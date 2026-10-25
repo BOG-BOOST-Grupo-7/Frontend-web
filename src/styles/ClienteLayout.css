@@ -1,0 +1,9 @@
+.cliente-layout{
+    min-height:100vh;
+    display:flex;
+    flex-direction:column;
+}
+
+.cliente-content{
+    flex:1;
+}

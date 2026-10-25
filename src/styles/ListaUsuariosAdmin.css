@@ -1,0 +1,442 @@
+/* ===============================
+   CONTENEDOR
+================================== */
+.usuarios-admin-container {
+    width: 95%;
+    max-width: 1400px;
+    margin: 30px auto;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.view-title {
+    text-align: center; /* Centrado como en PQRS */
+    font-size: 32px;
+    font-weight: bold;
+    color: #000;
+    margin-bottom: 30px;
+}
+
+/* ===============================
+   TARJETAS RESUMEN
+================================== */
+.usuarios-summary {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 15px;
+    margin-bottom: 25px;
+}
+
+.summary-card {
+    background: #fff;
+    border-radius: 10px;
+    padding: 12px 16px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    box-shadow: 0 4px 10px rgba(0,0,0,.08); /* Sombra suave para que resalte sin usar bordes */
+    border: none; /* Esto elimina cualquier línea o borde alrededor de la tarjeta */
+}
+
+.summary-card svg {
+    font-size: 26px;
+    /* El color se lo pasas desde React por prop style */
+}
+
+.summary-card span {
+    display: flex;
+    flex-direction: column;
+    color: #666;
+    font-size: 13px;
+}
+
+.summary-card strong {
+    margin-top: 2px;
+    font-size: 18px;
+    color: #222;
+}
+
+/* ===============================
+   BARRA DE ACCIONES Y FILTROS
+================================== */
+.action-bar {
+    display: flex;
+    align-items: center;
+    margin-bottom: 25px;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.search-group {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-right: auto;
+}
+
+.filter-group {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.search-group svg {
+    color: #ff9800;
+    font-size: 18px;
+}
+
+.filter-group label {
+    font-weight: 600;
+    color: #333;
+}
+
+
+.usuarios-input, .usuarios-select {
+    padding: 10px 15px;
+    border-radius: 6px !important;
+    border: none !important; /* Quitamos el borde por completo */
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06) !important; /* Sombra muy suave para que resalten del fondo */
+    outline: none !important;
+    font-size: 14px;
+    transition: all .3s ease;
+    box-sizing: border-box;
+    background-color: #fff;
+    color: #333;
+}
+
+.usuarios-select {
+    cursor: pointer;
+    min-width: 150px;
+    appearance: auto; /* Mantiene la flecha nativa pero limpia */
+}
+
+.usuarios-input {
+    min-width: 250px;
+}
+
+.usuarios-input:focus, .usuarios-select:focus {
+    border-color: #ff9800;
+    box-shadow: 0 0 0 2px rgba(255, 152, 0, 0.15); /* Resplandor naranja en lugar de borde negro */
+}
+
+/* ===============================
+   BOTONES
+================================== */
+.btn-orange {
+    background: #ff9800;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    padding: 10px 18px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    font-weight: 600;
+    transition: .25s;
+}
+
+.btn-orange:hover {
+    background: #f57c00;
+}
+
+.btn-orange svg {
+    font-size: 15px;
+}
+
+/* ===============================
+   TABLA
+================================== */
+.table-container {
+    background: #fff;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 5px 18px rgba(0,0,0,.08);
+    border: none; 
+    padding: 0; /* Obliga al contenedor a no tener espacios internos */
+    width: 100%; /* Asegura que el contenedor tome el ancho completo */
+}
+
+.usuarios-table {
+    width: 100%; /* Hace que la tabla se estire al 100% del contenedor */
+    border-collapse: collapse;
+    border: none;
+    margin: 0; /* Evita que la tabla tenga márgenes externos que la encojan */
+}
+
+.usuarios-table thead {
+    background: #ff9800;
+    color: #fff;
+}
+
+.usuarios-table th {
+    padding: 16px 20px; /* Un poco más de espacio a los lados */
+    text-align: left;
+    font-size: 15px;
+    font-weight: 600;
+}
+
+.usuarios-table td {
+    padding: 15px 20px; /* Un poco más de espacio a los lados */
+    border-bottom: 1px solid #eee;
+    vertical-align: middle;
+}
+
+.usuarios-table tbody tr {
+    transition: .25s;
+}
+
+.usuarios-table tbody tr:hover {
+    background: #fff7ec;
+}
+
+/* ===============================
+   ESTADOS (Badges)
+================================== */
+.status-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.status-active {
+    background: #e8f5e9;
+    color: #4caf50;
+}
+
+.status-inactive {
+    background: #ffebee;
+    color: #f44336;
+}
+
+/* ===============================
+   BOTONES DE ACCIONES EN TABLA
+================================== */
+.action-buttons {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.btn-icon {
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: .25s;
+    font-weight: 600;
+}
+
+.btn-icon.view {
+    width: 38px;
+    height: 38px;
+    background: #fff8e1;
+    color: #ff9800;
+}
+
+.btn-icon.view:hover {
+    background: #ff9800;
+    color: #fff;
+}
+
+.btn-icon.save {
+    background: #4caf50;
+    color: white;
+    padding: 8px 14px;
+}
+
+.btn-icon.save:hover {
+    background: #388e3c;
+}
+
+/* ===============================
+   MENSAJE SIN DATOS
+================================== */
+.sin-datos {
+    text-align: center;
+    padding: 40px;
+    color: #777;
+    font-size: 17px;
+}
+
+.btn-guardar {
+    background-color: #ff9800; /* Azul clásico (cámbialo a #4caf50 si era verde) */
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 14px;
+    transition: background-color 0.3s ease;
+}
+
+.btn-guardar:hover {
+    background-color: #f57c00;
+}
+/* ===============================
+   MODAL (Conservado)
+================================== */
+.modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,.55);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 999;
+    animation: fadeIn .25s ease;
+}
+
+.modal-content {
+    width: 90%;
+    max-width: 650px;
+    background: white;
+    border-radius: 14px;
+    overflow: hidden;
+    box-shadow: 0 10px 35px rgba(0,0,0,.25);
+    animation: scaleIn .25s ease;
+}
+
+.modal-header {
+    background: #ff9800;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 18px 25px;
+}
+
+.modal-header h2 {
+    margin: 0;
+    font-size: 24px;
+}
+
+.modal-close {
+    border: none;
+    background: none;
+    color: white;
+    font-size: 30px;
+    cursor: pointer;
+    transition: .2s;
+}
+
+.modal-close:hover {
+    transform: scale(1.15);
+}
+
+.modal-body {
+    padding: 25px;
+}
+
+.detalle-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 14px 0;
+    border-bottom: 1px solid #eee;
+}
+
+.detalle-item:last-child {
+    border-bottom: none;
+}
+
+.detalle-label {
+    font-weight: 600;
+    color: #555;
+}
+
+.detalle-valor {
+    color: #222;
+    font-weight: 500;
+    text-align: right;
+}
+
+/* ===============================
+   ANIMACIONES
+================================== */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes scaleIn {
+    from { opacity: 0; transform: scale(.9); }
+    to { opacity: 1; transform: scale(1); }
+}
+
+/* ===============================
+   RESPONSIVE
+================================== */
+@media (max-width: 900px) {
+    .usuarios-summary {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .action-bar {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    .search-group, .filter-group {
+        width: 100%;
+    }
+    .usuarios-input {
+        width: 100%;
+    }
+}
+
+@media (max-width: 768px) {
+    .usuarios-admin-container {
+        width: 98%;
+        padding: 10px;
+    }
+    .view-title {
+        font-size: 28px;
+    }
+    .usuarios-summary {
+        grid-template-columns: 1fr;
+    }
+    .table-container {
+        overflow-x: auto;
+    }
+    .usuarios-table {
+        min-width: 800px;
+    }
+    .modal-content {
+        width: 95%;
+    }
+}
+
+@media (max-width: 480px) {
+    .view-title {
+        font-size: 24px;
+    }
+    .summary-card {
+        padding: 15px;
+    }
+    .summary-card strong {
+        font-size: 20px;
+    }
+    .btn-orange {
+        width: 100%;
+    }
+    .modal-header h2 {
+        font-size: 20px;
+    }
+    .detalle-item {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 6px;
+    }
+    .detalle-valor {
+        text-align: left;
+    }
+}

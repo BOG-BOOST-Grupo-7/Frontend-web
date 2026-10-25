@@ -1,0 +1,313 @@
+/* ===================================
+   CONTENEDOR GENERAL (Más compacto)
+=================================== */
+
+.perfil-container {
+    max-width: 750px;
+    margin: 30px auto;
+    padding: 15px;
+    font-family: inherit;
+}
+
+.perfil-header-container {
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+.perfil-title {
+    font-size: 26px;
+    font-weight: 700;
+    color: #111;
+    margin-bottom: 4px;
+    font-family: Georgia, serif;
+}
+
+.perfil-subtitle {
+    font-size: 13px;
+    color: #666;
+}
+
+/* ===================================
+   TARJETA DEL PERFIL
+=================================== */
+
+.perfil-card {
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 16px;
+    padding: 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 35px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.04);
+}
+
+/* ===================================
+   AVATAR
+=================================== */
+
+.avatar-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 160px;
+}
+
+.avatar-container {
+    position: relative;
+    width: 120px;
+    height: 120px;
+    border: 3px solid #f5b952;
+    border-radius: 50%;
+    overflow: hidden;
+    cursor: pointer;
+    background: #f8fafc;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.06);
+    transition: transform 0.2s ease;
+}
+
+.avatar-container:hover {
+    transform: scale(1.02);
+}
+
+.avatar-image,
+.avatar-circle {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.avatar-circle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #f5b95220;
+    color: #d99a30;
+    font-size: 42px;
+    font-weight: bold;
+}
+
+.avatar-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.6);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    opacity: 0;
+    transition: opacity 0.25s ease;
+}
+
+.avatar-container:hover .avatar-overlay {
+    opacity: 1;
+}
+
+.avatar-overlay i {
+    font-size: 24px;
+    margin-bottom: 4px;
+}
+
+.avatar-overlay p {
+    font-size: 11px;
+    text-align: center;
+    margin: 0;
+    font-weight: 500;
+}
+
+.avatar-texto {
+    margin-top: 10px;
+    font-size: 12px;
+    color: #64748b;
+    text-align: center;
+}
+
+/* ===================================
+   INFORMACIÓN DEL PERFIL
+=================================== */
+
+.perfil-info {
+    flex: 1;
+    width: 100%;
+}
+
+.perfil-field-wrapper {
+    display: flex;
+    flex-direction: column;
+}
+
+.info-field {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.info-field label {
+    font-weight: 600;
+    font-size: 12px;
+    color: #475569;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.info-field label i {
+    color: #f5b952;
+    font-size: 13px;
+    width: 14px;
+}
+
+/* ===================================
+   CAMPOS DE TEXTO E INPUTS
+=================================== */
+
+.field-value {
+    padding: 8px 12px;
+    background-color: #f8fafc;
+    border: 1px solid #cbd5e1;
+    border-radius: 8px;
+    min-height: 38px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    transition: all 0.2s ease;
+}
+
+.field-value:hover {
+    border-color: #94a3b8;
+}
+
+.readonly-field {
+    background-color: #f1f5f9;
+    opacity: 0.8;
+}
+
+.field-text {
+    flex: 1;
+    color: #1e293b;
+    font-size: 14px;
+    word-break: break-word;
+}
+
+.field-input-edit {
+    flex: 1;
+    border: none;
+    outline: none;
+    background: transparent;
+    font-size: 14px;
+    color: #1e293b;
+    width: 100%;
+}
+
+/* ===================================
+   BOTÓN EDITAR CAMPO
+=================================== */
+
+.btn-edit-field {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 4px 8px;
+    border-radius: 6px;
+    color: #64748b;
+    transition: all 0.2s;
+}
+
+.btn-edit-field:hover {
+    background-color: #e2e8f0;
+    color: #0f172a;
+}
+
+.btn-edit-field.active {
+    background-color: #f5b95220;
+    color: #d99a30;
+}
+
+/* ===================================
+   DIVISORES
+=================================== */
+
+.field-divider {
+    border: none;
+    border-top: 1px solid #f1f5f9;
+    margin: 8px 0;
+}
+
+/* ===================================
+   BOTONES DE ACCIÓN PRINCIPALES
+=================================== */
+
+.perfil-actions {
+    display: flex;
+    gap: 12px;
+    margin-top: 18px;
+    flex-wrap: wrap;
+}
+
+.btn-guardar {
+    background-color: #f5b952;
+    border: none;
+    border-radius: 10px;
+    padding: 10px 20px;
+    font-weight: 600;
+    font-size: 13px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    color: #1e293b;
+    box-shadow: 0 2px 4px rgba(245, 185, 82, 0.2);
+}
+
+.btn-guardar:hover {
+    background-color: #e5a840;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 10px rgba(245, 185, 82, 0.3);
+}
+
+.btn-danger {
+    background-color: #fee2e2;
+    border: none;
+    border-radius: 10px;
+    padding: 10px 20px;
+    font-weight: 600;
+    font-size: 13px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    color: #dc2626;
+}
+
+.btn-danger:hover {
+    background-color: #fecaca;
+    transform: translateY(-1px);
+}
+
+/* ===================================
+   RESPONSIVE
+=================================== */
+
+@media (max-width: 850px) {
+    .perfil-card {
+        flex-direction: column;
+        align-items: center;
+        padding: 20px;
+    }
+
+    .avatar-section {
+        width: 100%;
+        margin-bottom: 15px;
+    }
+
+    .perfil-info {
+        width: 100%;
+    }
+}

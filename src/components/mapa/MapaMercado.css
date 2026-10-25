@@ -1,0 +1,143 @@
+/* Página principal */
+.pagina-mapa {
+  width: 100vw;
+  min-height: 100vh;
+  margin: 0;
+  padding: 15px;
+  box-sizing: border-box;
+  background: #f4f4f6;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-family: Arial, sans-serif;
+}
+
+.pagina-mapa h1 {
+  margin: 0 0 10px;
+  color: #333;
+  font-size: 24px;
+}
+
+.barra-controles {
+  margin-bottom: 12px;
+  display: flex;
+  gap: 8px;
+}
+
+.barra-controles button {
+  padding: 6px 16px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  border: 1px solid #bbb;
+  border-radius: 4px;
+  background: #ffffff;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+/* Contenedor padre con Scrollbox */
+.contenedor-central {
+  width: 100%;
+  max-width: 1300px;
+  height: 80vh;
+  overflow: auto;
+  border: 2px solid #555;
+  border-radius: 6px;
+  background: #ffffff;
+  box-sizing: border-box;
+}
+
+/* Envoltorio que CENTRA perfectamente el SVG */
+.envoltorio-escalado {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-width: 100%;
+  min-height: 100%;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+/* SVG del Mapa */
+.lienzo-mapa-svg {
+  width: 1200px;
+  height: 850px;
+  transform-origin: center center;
+  transition: transform 0.15s ease-out;
+  background: #ffffff;
+}
+
+/* ESTILOS DE LOS PUESTOS DENTRO DEL SVG */
+.puesto-svg {
+  cursor: pointer;
+}
+
+.puesto-svg rect {
+  stroke: #333333;
+  stroke-width: 1px;
+  transition: all 0.15s ease;
+}
+
+.puesto-svg.disponible rect {
+  fill: #ffffff;
+}
+
+.puesto-svg.ocupado rect {
+  fill: #f39c12; /* Naranja de ocupado */
+  stroke: #d35400;
+}
+
+.texto-puesto {
+  font-size: 8px;
+  font-weight: bold;
+  fill: #000000;
+  text-anchor: middle;
+  dominant-baseline: central;
+  user-select: none;
+  pointer-events: none;
+}
+
+.puesto-svg.ocupado .texto-puesto {
+  fill: #ffffff;
+}
+
+/* Efecto al pasar el cursor */
+.puesto-svg:hover rect {
+  stroke: #e67e22;
+  stroke-width: 2.5px;
+  filter: drop-shadow(0px 0px 3px rgba(230, 126, 34, 0.8));
+}
+
+/* ESTILOS DE TEXTOS DE REFERENCIA */
+.label-icono {
+  font-size: 26px;
+  text-anchor: middle;
+}
+
+.label-ref {
+  font-size: 11px;
+  font-weight: bold;
+  fill: #333;
+  text-anchor: middle;
+}
+
+.label-ref-sm {
+  font-size: 10px;
+  font-weight: bold;
+  fill: #333;
+  text-anchor: middle;
+}
+
+.label-ref-lg {
+  font-size: 12px;
+  font-weight: bold;
+  fill: #222;
+  text-anchor: middle;
+}
+
+.cargando {
+  padding: 80px;
+  font-size: 18px;
+  color: #666;
+  text-align: center;
+}

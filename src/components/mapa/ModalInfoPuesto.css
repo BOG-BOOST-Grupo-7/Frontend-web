@@ -1,0 +1,168 @@
+.mip-fondo {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.55);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  backdrop-filter: blur(2px);
+}
+
+.mip-contenido {
+  background: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  width: 85%;
+  max-width: 320px;
+  position: relative;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+  color: #333;
+  font-family: Arial, sans-serif;
+  text-align: center;
+}
+
+.mip-boton-cerrar {
+  position: absolute;
+  top: 8px;
+  right: 12px;
+  background: transparent;
+  border: none;
+  font-size: 22px;
+  font-weight: bold;
+  cursor: pointer;
+  color: #888;
+  transition: color 0.2s;
+}
+
+.mip-boton-cerrar:hover { 
+  color: #000; 
+}
+
+.mip-contenido h2 {
+  margin: 0 0 15px;
+  color: #5a3e1b;
+  border-bottom: 2px solid #f39c12;
+  padding-bottom: 6px;
+  font-size: 18px;
+  text-align: center;
+}
+
+/* Estilo vertical forzado */
+.mip-info-negocio {
+  display: flex;
+  flex-direction: column; /* 👈 Fuerza la columna */
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  width: 100%;
+}
+
+/* Estilos para hacer el bloque del negocio clicable */
+.mip-info-negocio.mip-clicable {
+  cursor: pointer;
+  transition: transform 0.2s ease, background-color 0.2s ease;
+  border-radius: 8px;
+  padding: 4px;
+}
+
+.mip-info-negocio.mip-clicable:hover {
+  transform: scale(1.01);
+}
+
+.mip-info-negocio.mip-clicable:hover .mip-campo-info {
+  border-color: #f39c12;
+  background: #fff8ee;
+}
+
+.mip-texto-ver-perfil {
+  font-size: 13px;
+  font-weight: bold;
+  color: #f39c12;
+  margin-top: 5px;
+  text-decoration: underline;
+  width: 100%;
+  text-align: center;
+}
+
+.mip-campo-info {
+  display: flex;
+  flex-direction: column; /* 👈 Etiqueta arriba, valor abajo */
+  align-items: flex-start; /* Alinea el texto a la izquierda */
+  gap: 4px;
+  background: #fdfbf7;
+  padding: 8px 12px;
+  border-radius: 6px;
+  border: 1px solid #f0e6d2;
+  width: 100%;
+  box-sizing: border-box;
+  text-align: left;
+}
+
+.mip-etiqueta {
+  font-size: 11px;
+  text-transform: uppercase;
+  color: #8c7355;
+  font-weight: bold;
+  letter-spacing: 0.5px;
+  width: 100%;
+}
+
+.mip-valor {
+  font-size: 13px;
+  color: #2c2c2c;
+  line-height: 1.4;
+  word-wrap: break-word;
+  width: 100%;
+  text-align: left;
+}
+
+.mip-logo-container {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 5px;
+  width: 100%;
+}
+
+.mip-logo-container img {
+  width: 60px;
+  height: 60px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 2px solid #f39c12;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.mip-info-disponible {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.mip-info-disponible p {
+  margin: 8px 0;
+  line-height: 1.4;
+  font-size: 13px;
+  color: #555;
+  text-align: center;
+}
+
+.mip-insignia {
+  display: inline-block;
+  padding: 3px 12px;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: bold;
+  margin-bottom: 8px;
+  text-align: center;
+}
+
+.mip-insignia.mip-ocupado { 
+  background: #f39c12; 
+  color: #fff; 
+}
+
+.mip-insignia.mip-disponible { 
+  background: #2ecc71; 
+  color: #fff; 
+}

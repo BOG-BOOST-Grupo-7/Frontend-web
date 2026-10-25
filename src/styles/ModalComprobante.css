@@ -1,0 +1,42 @@
+/* ModalComprobante.css */
+
+.tabla-comprobante {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 15px;
+}
+
+.tabla-comprobante th {
+    text-align: left;
+    padding: 12px;
+    border-bottom: 2px solid #eee;
+    color: #555;
+}
+
+.tabla-comprobante td {
+    padding: 12px;
+    border-bottom: 1px solid #f5f5f5;
+}
+
+.total-seccion {
+    margin-top: 20px;
+    text-align: right;
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: #2b2b2b;
+    padding-top: 10px;
+    border-top: 2px solid #eee;
+}
+
+/* Ajuste para que se vea bien al imprimir */
+/* Ajuste para que se vea bien al imprimir (específico para comprobantes) */
+@media print {
+    .modal-overlay { background: none !important; }
+    
+    /* Cambia .modal-content por una clase propia de tu comprobante */
+    .modal-comprobante-content { 
+        box-shadow: none !important; 
+    } 
+    
+    .btn-orange, .btn-green { display: none; }
+}

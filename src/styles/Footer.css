@@ -1,0 +1,147 @@
+/* ==========================
+   FOOTER
+========================== */
+
+.footer {
+    background: #f8b94e;
+    padding: 25px 5% 15px;
+    margin-top: auto;
+}
+
+.footer-content {
+    max-width: 1200px;
+    margin: auto;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: 40px;
+}
+
+/* ==========================
+   INFORMACIÓN
+========================== */
+
+.footer-info {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.info-title {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.info-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: #333;
+    font-size: 15px;
+}
+
+.info-item i {
+    width: 20px;
+}
+
+/* ==========================
+   REDES
+========================== */
+
+.footer-social {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.social-title {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.social-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.social-links a {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    text-decoration: none;
+    color: #333;
+
+    transition: .3s;
+}
+
+.social-links a:hover {
+    transform: translateY(-2px);
+    color: #000;
+}
+
+.social-links i {
+    font-size: 28px;
+}
+
+/* Colores */
+
+.fa-youtube {
+    color: #ff0000;
+}
+
+.fa-facebook {
+    color: #1877f2;
+}
+
+.fa-instagram {
+    color: #e4405f;
+}
+
+.fa-tiktok {
+    color: #000;
+}
+
+.social-links a:hover i {
+    color: #000;
+}
+
+/* ==========================
+   FOOTER BOTTOM
+========================== */
+
+.footer-bottom {
+    margin-top: 20px;
+    padding-top: 15px;
+    border-top: 1px solid rgba(0,0,0,.2);
+
+    text-align: center;
+    font-size: 14px;
+    color: #222;
+}
+
+/* ==========================
+   RESPONSIVE
+========================== */
+
+@media (max-width:768px){
+
+    .footer-content{
+        flex-direction: column;
+        align-items: center;
+        text-align:center;
+    }
+
+    .footer-info,
+    .footer-social{
+        align-items:center;
+    }
+
+    .social-links{
+        justify-content:center;
+    }
+}

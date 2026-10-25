@@ -1,0 +1,553 @@
+/* ==========================================
+   RESET
+========================================== */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    background:#f5f5f5;
+    font-family:Arial, Helvetica, sans-serif;
+}
+
+/* ==========================================
+   CONTENEDOR PRINCIPAL
+========================================== */
+
+.notificaciones-page{
+
+    width:100%;
+    max-width:950px;
+
+    margin:40px auto;
+
+    padding:0 20px 40px;
+
+}
+
+/* ==========================================
+   TITULO
+========================================== */
+
+.view-title{
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:12px;
+
+    font-size:40px;
+
+    color:#222;
+
+    margin-bottom:35px;
+
+    font-family:Georgia, serif;
+
+}
+
+.view-title svg{
+
+    color:#F5B952;
+
+}
+
+/* ==========================================
+   BOTON MARCAR TODAS
+========================================== */
+
+.acciones-notificaciones{
+
+    display:flex;
+
+    justify-content:center;
+
+    margin-bottom:30px;
+
+}
+
+.btn-marcar{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:10px;
+
+    background:#F5B952;
+
+    color:#222;
+
+    border:none;
+
+    border-radius:30px;
+
+    padding:13px 30px;
+
+    font-size:15px;
+
+    font-weight:bold;
+
+    cursor:pointer;
+
+    transition:.25s;
+
+}
+
+.btn-marcar:hover{
+
+    background:#e8ab40;
+
+    transform:translateY(-2px);
+
+    box-shadow:0 8px 18px rgba(0,0,0,.15);
+
+}
+
+.btn-marcar:disabled{
+
+    opacity:.6;
+
+    cursor:not-allowed;
+
+    transform:none;
+
+    box-shadow:none;
+
+}
+
+/* ==========================================
+   LISTA
+========================================== */
+
+.notificaciones-list{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:18px;
+
+}
+
+/* ==========================================
+   MENSAJE SIN DATOS
+========================================== */
+
+.sin-datos{
+
+    text-align:center;
+
+    font-size:18px;
+
+    color:#777;
+
+    padding:60px;
+
+}
+
+/* ==========================================
+   SIN NOTIFICACIONES
+========================================== */
+
+.sin-notificaciones{
+
+    background:white;
+
+    border-radius:20px;
+
+    padding:70px 30px;
+
+    text-align:center;
+
+    box-shadow:0 3px 10px rgba(0,0,0,.08);
+
+}
+
+.icono-vacio{
+
+    font-size:70px;
+
+    color:#d0d0d0;
+
+    margin-bottom:20px;
+
+}
+
+.sin-notificaciones h3{
+
+    font-size:25px;
+
+    margin-bottom:10px;
+
+    color:#444;
+
+}
+
+.sin-notificaciones p{
+
+    color:#888;
+
+    font-size:15px;
+
+}
+
+/* ==========================================
+   TARJETA DE NOTIFICACIÓN
+========================================== */
+
+.notificacion-item{
+
+    display:flex;
+
+    align-items:flex-start;
+
+    gap:18px;
+
+    background:#fff;
+
+    border:2px solid #e5e5e5;
+
+    border-radius:20px;
+
+    padding:20px 25px;
+
+    transition:.3s;
+
+    box-shadow:0 3px 10px rgba(0,0,0,.06);
+
+    cursor:pointer;
+
+}
+
+.notificacion-item:hover{
+
+    transform:translateX(6px);
+
+    box-shadow:0 8px 18px rgba(0,0,0,.12);
+
+}
+
+/* ==========================================
+   NOTIFICACIONES NO LEÍDAS
+========================================== */
+
+.notificacion-item.no-leida{
+
+    background:#FFFBEA;
+
+    border-left:7px solid #F5B952;
+
+    border-color:#F5B952;
+
+}
+
+.notificacion-item.no-leida:hover{
+
+    border-color:#E4A63D;
+
+}
+
+/* ==========================================
+   ICONO
+========================================== */
+
+.notificacion-icon{
+
+    width:55px;
+
+    height:55px;
+
+    min-width:55px;
+
+    border-radius:50%;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    font-size:22px;
+
+}
+
+/* ==========================================
+   TIPOS DE ICONOS
+========================================== */
+
+.notificacion-icon.informativa{
+
+    background:#4CAF5020;
+
+    color:#4CAF50;
+
+}
+
+.notificacion-icon.alerta{
+
+    background:#F4433620;
+
+    color:#F44336;
+
+}
+
+.notificacion-icon.promocion{
+
+    background:#FFA72620;
+
+    color:#FFA726;
+
+}
+
+.notificacion-icon.sistema{
+
+    background:#42A5F520;
+
+    color:#42A5F5;
+
+}
+
+/* ==========================================
+   CONTENIDO
+========================================== */
+
+.notificacion-content{
+
+    flex:1;
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:6px;
+
+}
+
+.mensaje{
+
+    font-size:15px;
+
+    line-height:1.6;
+
+    color:#333;
+
+}
+
+.fecha{
+
+    font-size:13px;
+
+    color:#888;
+
+}
+
+/* ==========================================
+   BOTÓN ELIMINAR
+========================================== */
+
+.btn-eliminar{
+
+    width:38px;
+
+    height:38px;
+
+    border:none;
+
+    background:transparent;
+
+    border-radius:50%;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    cursor:pointer;
+
+    color:#999;
+
+    transition:.25s;
+
+}
+
+.btn-eliminar:hover{
+
+    background:#F44336;
+
+    color:#fff;
+
+    transform:scale(1.1);
+
+}
+
+.btn-eliminar svg{
+
+    font-size:16px;
+
+}
+
+/* ===========================
+   FOOTER
+=========================== */
+
+.footer-notificaciones {
+    margin-top: 40px;
+    text-align: center;
+    color: #777;
+    font-size: 14px;
+    padding: 20px;
+}
+
+/* ===========================
+   RESPONSIVE
+=========================== */
+
+@media (max-width: 992px) {
+
+    .notificaciones-page {
+        width: 90%;
+    }
+
+}
+
+@media (max-width: 768px) {
+
+    .notificaciones-page {
+        width: 95%;
+        padding: 25px 20px;
+    }
+
+    .view-title {
+        font-size: 28px;
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .acciones-notificaciones {
+        justify-content: center;
+    }
+
+    .btn-marcar {
+        width: 100%;
+        justify-content: center;
+        padding: 12px;
+        font-size: 15px;
+    }
+
+    .notificacion-item {
+        padding: 16px;
+        gap: 14px;
+    }
+
+    .notificacion-icon {
+        width: 48px;
+        height: 48px;
+        font-size: 18px;
+    }
+
+    .mensaje {
+        font-size: 14px;
+    }
+
+    .fecha {
+        font-size: 12px;
+    }
+
+    .btn-eliminar {
+        width: 34px;
+        height: 34px;
+    }
+
+}
+
+@media (max-width: 576px) {
+
+    .notificaciones-page {
+        width: 100%;
+        padding: 18px 15px;
+        border-radius: 0;
+        box-shadow: none;
+    }
+
+    .view-title {
+        font-size: 24px;
+    }
+
+    .notificacion-item {
+        flex-direction: row;
+        align-items: flex-start;
+        padding: 14px;
+        gap: 12px;
+    }
+
+    .notificacion-icon {
+        width: 42px;
+        height: 42px;
+        font-size: 16px;
+        flex-shrink: 0;
+    }
+
+    .mensaje {
+        font-size: 13px;
+        line-height: 1.5;
+    }
+
+    .fecha {
+        font-size: 11px;
+    }
+
+    .btn-marcar {
+        font-size: 14px;
+        padding: 10px;
+    }
+
+    .btn-eliminar {
+        width: 32px;
+        height: 32px;
+        font-size: 13px;
+    }
+
+    .sin-notificaciones svg {
+        font-size: 60px;
+    }
+
+    .sin-notificaciones p {
+        font-size: 16px;
+    }
+
+}
+
+@media (max-width: 380px) {
+
+    .view-title {
+        font-size: 22px;
+    }
+
+    .notificacion-item {
+        padding: 12px;
+    }
+
+    .notificacion-icon {
+        width: 38px;
+        height: 38px;
+        font-size: 15px;
+    }
+
+    .mensaje {
+        font-size: 12px;
+    }
+
+    .fecha {
+        font-size: 10px;
+    }
+
+    .btn-marcar {
+        font-size: 13px;
+    }
+
+}

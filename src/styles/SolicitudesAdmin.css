@@ -1,0 +1,627 @@
+/* ==========================================
+   CONTENEDOR PRINCIPAL
+========================================== */
+
+.solicitudes-admin {
+    width: 95%;
+    max-width: 1400px;
+    margin: 30px auto;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.view-title {
+    text-align: center;
+    font-size: 32px;
+    font-weight: bold;
+    color: #000;
+    margin-bottom: 30px;
+    font-family: Georgia, serif;
+}
+
+/* ==========================================
+   TARJETAS RESUMEN
+========================================== */
+
+.solicitudes-summary {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 15px;
+    margin-bottom: 25px;
+}
+
+.summary-card {
+    background: #fff;
+    border-radius: 10px;
+    padding: 12px 16px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    box-shadow: 0 4px 10px rgba(0,0,0,.08);
+    border: none;
+}
+
+.summary-card svg {
+    font-size: 26px;
+    color: #F5B952;
+}
+
+.summary-card span {
+    display: flex;
+    flex-direction: column;
+    color: #666;
+    font-size: 13px;
+    font-weight: bold;
+}
+
+.summary-card strong {
+    margin-top: 2px;
+    font-size: 18px;
+    color: #222;
+}
+
+/* ==========================================
+   BARRA DE ACCIONES Y FILTROS
+========================================== */
+
+.action-bar {
+    display: flex;
+    align-items: center;
+    margin-bottom: 25px;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.search-group {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-right: auto;
+}
+
+.search-group svg {
+    color: #ff9800;
+    font-size: 18px;
+}
+
+.filter-group {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.filter-group label {
+    font-weight: 600;
+    color: #333;
+}
+
+.usuarios-input, 
+.usuarios-select {
+    padding: 10px 15px;
+    border-radius: 6px !important;
+    border: none !important; 
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06) !important; 
+    outline: none !important;
+    font-size: 14px;
+    transition: all .3s ease;
+    box-sizing: border-box;
+    background-color: #fff;
+    color: #333;
+}
+
+.usuarios-select {
+    cursor: pointer;
+    min-width: 150px;
+    appearance: auto;
+}
+
+.usuarios-input {
+    min-width: 250px;
+}
+
+.usuarios-input:focus, 
+.usuarios-select:focus {
+    box-shadow: 0 0 0 2px rgba(255, 152, 0, 0.15) !important;
+}
+
+/* ==========================================
+   TABLA
+========================================== */
+
+.table-container {
+    background: #fff;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 5px 18px rgba(0,0,0,.08);
+    border: none; 
+    padding: 0;
+    width: 100%;
+}
+
+.solicitudes-table {
+    width: 100%;
+    border-collapse: collapse;
+    border: none;
+    margin: 0;
+}
+
+.solicitudes-table thead {
+    background: #ff9800;
+    color: #fff;
+}
+
+.solicitudes-table th {
+    padding: 16px 20px;
+    text-align: left;
+    font-size: 15px;
+    font-weight: 600;
+}
+
+.solicitudes-table td {
+    padding: 15px 20px;
+    border-bottom: 1px solid #eee;
+    vertical-align: middle;
+}
+
+.solicitudes-table tbody tr {
+    background: white;
+    transition: .25s;
+}
+
+.solicitudes-table tbody tr:hover {
+    background: #fff7ec;
+}
+
+.solicitudes-table small {
+    display: block;
+    color: #666;
+    margin-top: 5px;
+}
+
+.sin-datos {
+    text-align: center;
+    padding: 40px;
+    color: #777;
+    font-size: 17px;
+}
+
+/* ==========================================
+   ESTADOS (Badges)
+========================================== */
+
+.status-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.status-pending {
+    background: #FFF4D6;
+    color: #C98A00;
+}
+
+.status-approved {
+    background: #DDF6E3;
+    color: #2E7D32;
+}
+
+.status-rejected {
+    background: #FFE0E0;
+    color: #C62828;
+}
+
+/* ==========================================
+   BOTONES DE ACCIÓN EN TABLA
+========================================== */
+
+.action-buttons {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.btn-icon {
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: .25s;
+    font-weight: 600;
+    width: 38px;
+    height: 38px;
+}
+
+.btn-icon.view {
+    background: #fff8e1;
+    color: #ff9800;
+}
+
+.btn-icon.view:hover {
+    background: #ff9800;
+    color: #fff;
+}
+
+.btn-icon.approve {
+    background: #e8f5e9;
+    color: #4CAF50;
+}
+
+.btn-icon.approve:hover {
+    background: #4CAF50;
+    color: white;
+}
+
+.btn-icon.reject {
+    background: #ffebee;
+    color: #F44336;
+}
+
+.btn-icon.reject:hover {
+    background: #F44336;
+    color: white;
+}
+
+/* ==========================================
+   PAGINACIÓN Y BOTONES
+========================================== */
+
+.btn-orange {
+    background: #ff9800;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    padding: 10px 18px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    font-weight: 600;
+    transition: .25s;
+}
+
+.btn-orange:hover {
+    background: #f57c00;
+}
+
+.pagination-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 1rem;
+    padding: 0.5rem 1rem;
+}
+
+.pagination-info {
+    font-size: 0.9rem;
+    color: #666;
+}
+
+.pagination-buttons {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+}
+
+.pagination-current {
+    margin: 0 0.5rem;
+    font-weight: bold;
+}
+
+.pagination-buttons button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+/* ==========================================
+   MODAL REDISEÑADO
+========================================== */
+
+.modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    padding: 20px;
+    animation: fadeIn .25s ease;
+}
+
+/* 👇 AQUÍ ESTÁ LA MAGIA PARA EL SCROLL 👇 */
+.negocio-modal {
+    width: 800px;
+    max-width: 95%;
+    max-height: 90vh; /* Limita la altura al 90% de la pantalla */
+    overflow-y: auto; /* Habilita scroll vertical si hay mucho contenido */
+    border-radius: 20px;
+    padding: 0;
+    background: #fff;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+    animation: scaleIn .25s ease;
+}
+
+/* Estilos para la barra de scroll del modal */
+.negocio-modal::-webkit-scrollbar {
+    width: 8px;
+}
+.negocio-modal::-webkit-scrollbar-thumb {
+    background: #ff9800;
+    border-radius: 4px;
+}
+.negocio-modal::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+.modal-header {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding: 25px;
+    background: #F8F4EC;
+    border-bottom: 2px solid #eaeaea;
+    position: sticky;
+    top: 0;
+    z-index: 10; /* Para que el header se quede fijo arriba al hacer scroll */
+}
+
+.modal-logo img {
+    width: 90px;
+    height: 90px;
+    object-fit: cover;
+    border-radius: 18px;
+    border: 2px solid #fff;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+.logo-placeholder {
+    width: 90px;
+    height: 90px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 18px;
+    background: #fff;
+    font-size: 40px;
+    border: 2px solid #eee;
+}
+
+.modal-title-info {
+    flex: 1;
+}
+
+.modal-title-info h2 {
+    margin: 0 0 10px 0;
+    font-size: 26px;
+    color: #222;
+}
+
+.modal-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    padding: 25px;
+}
+
+.info-section h3 {
+    font-size: 16px;
+    color: #444;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 5px;
+}
+
+.info-section h3 i {
+    color: #F5B952;
+}
+
+.info-card {
+    background: #fafafa;
+    border: 1px solid #eee;
+    border-radius: 12px;
+    padding: 15px;
+}
+
+.info-card p {
+    margin: 0 0 8px 0;
+    color: #444;
+    line-height: 1.5;
+}
+
+.info-card p:last-child {
+    margin-bottom: 0;
+}
+
+.descripcion-card,
+.observacion-card {
+    margin: 0 25px 20px 25px;
+}
+
+.observacion-card {
+    background: #FFF3E0;
+    border-color: #FFB74D;
+}
+
+.observacion-card h4 {
+    color: #E65100;
+}
+
+.modal-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+    padding: 20px 25px;
+    background: #fafafa;
+    border-top: 1px solid #eee;
+    position: sticky;
+    bottom: 0;
+    z-index: 10; /* Para que los botones se queden fijos abajo al hacer scroll */
+}
+
+.btn-approve,
+.btn-reject,
+.btn-close {
+    border: none;
+    border-radius: 8px;
+    padding: 12px 24px;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: .2s;
+}
+
+.btn-approve { background: #22c55e; color: white; }
+.btn-approve:hover { background: #16a34a; }
+
+.btn-reject { background: #ef4444; color: white; }
+.btn-reject:hover { background: #dc2626; }
+
+.btn-close { background: #64748b; color: white; }
+.btn-close:hover { background: #475569; }
+
+/* ==========================================
+   ANIMACIONES
+========================================== */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes scaleIn {
+    from { opacity: 0; transform: scale(.9); }
+    to { opacity: 1; transform: scale(1); }
+}
+
+/* ==========================================
+   RESPONSIVE
+========================================== */
+
+@media (max-width: 900px) {
+    .solicitudes-summary {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .action-bar {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    
+    .search-group, 
+    .filter-group {
+        width: 100%;
+    }
+    
+    .usuarios-input {
+        width: 100%;
+    }
+}
+
+@media (max-width: 768px) {
+    .solicitudes-admin {
+        width: 98%;
+        padding: 10px;
+    }
+    
+    .view-title {
+        font-size: 28px;
+    }
+    
+    .solicitudes-summary {
+        grid-template-columns: 1fr;
+    }
+    
+    .table-container {
+        overflow-x: auto;
+    }
+    
+    .solicitudes-table {
+        min-width: 800px;
+    }
+    
+    .modal-content {
+        width: 95%;
+    }
+}
+
+@media (max-width: 700px) {
+    .modal-grid {
+        grid-template-columns: 1fr;
+        padding: 15px;
+    }
+    
+    .modal-header {
+        flex-direction: column;
+        text-align: center;
+        padding: 20px;
+    }
+    
+    .modal-title-info h2 {
+        font-size: 22px;
+    }
+    
+    .descripcion-card,
+    .observacion-card {
+        margin: 0 15px 15px 15px;
+    }
+    
+    .modal-actions {
+        flex-direction: column;
+    }
+}
+
+@media (max-width: 480px) {
+    .view-title {
+        font-size: 24px;
+    }
+    
+    .summary-card {
+        padding: 15px;
+    }
+    
+    .summary-card strong {
+        font-size: 20px;
+    }
+    
+    .btn-orange {
+        width: 100%;
+    }
+    
+    .btn-icon {
+        width: 34px;
+        height: 34px;
+        font-size: 15px;
+    }
+}
+
+/* ==========================================
+   SCROLL
+========================================== */
+
+.table-container::-webkit-scrollbar {
+    height: 10px;
+}
+
+.table-container::-webkit-scrollbar-thumb {
+    background: #F5B952;
+    border-radius: 10px;
+}
+
+.table-container::-webkit-scrollbar-track {
+    background: #f2f2f2;
+}

@@ -1,0 +1,26 @@
+.mapa-page {
+  min-height: 100vh;
+  background: #f5f7fa;
+  padding: 20px;
+}
+
+.mapa-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  background: white;
+  border-radius: 16px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+  overflow: hidden;
+  padding: 20px;
+}
+
+@media (max-width: 768px) {
+  .mapa-page {
+    padding: 10px;
+  }
+  
+  .mapa-container {
+    padding: 10px;
+    border-radius: 8px;
+  }
+}

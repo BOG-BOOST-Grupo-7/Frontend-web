@@ -1,0 +1,59 @@
+.pqrs-container{
+    max-width:900px;
+    margin:40px auto;
+    padding:20px;
+}
+
+.pqrs-container h1{
+    text-align:center;
+    margin-bottom:30px;
+}
+
+.pqrs-form{
+    display:flex;
+    flex-direction:column;
+    gap:15px;
+    margin-bottom:40px;
+}
+
+.pqrs-form textarea{
+    min-height:180px;
+    resize:vertical;
+    padding:12px;
+    font-size:16px;
+    border:1px solid #ccc;
+    border-radius:8px;
+}
+
+.pqrs-form button{
+    width:180px;
+    padding:12px;
+    background:#f7941d;
+    color:white;
+    border:none;
+    border-radius:8px;
+    cursor:pointer;
+    font-size:16px;
+}
+
+.pqrs-form button:hover{
+    background:#d97d11;
+}
+
+.pqrs-lista{
+    display:flex;
+    flex-direction:column;
+    gap:20px;
+}
+
+.pqrs-card{
+    border:1px solid #ddd;
+    border-radius:10px;
+    padding:20px;
+    background:white;
+}
+
+.pendiente{
+    color:#f7941d;
+    font-weight:bold;
+}

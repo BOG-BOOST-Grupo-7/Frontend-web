@@ -1,0 +1,86 @@
+.mapa-pagina {
+  width: 100vw;
+  min-height: 100vh;
+  padding: 20px;
+  box-sizing: border-box;
+  background: #f4f4f6;
+  display: flex;
+  flex-direction: column;
+  align-items: center; 
+  font-family: Arial, sans-serif;
+}
+
+.mapa-pagina h1 {
+  margin: 0 0 10px;
+  color: #333;
+  font-size: 20px;
+  text-align: center;
+}
+
+.mapa-controles {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.mapa-controles button {
+  width: 40px;
+  height: 40px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  border: 1px solid #bbb;
+  border-radius: 6px;
+  background: #fff;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  transition: background 0.15s;
+}
+
+.mapa-controles button:hover {
+  background: #f39c12;
+  color: #fff;
+  border-color: #f39c12;
+}
+
+.zoom-indicador {
+  font-weight: bold;
+  color: #555;
+  min-width: 55px;
+  text-align: center;
+}
+
+.mapa-viewport {
+  width: 100%;
+  max-width: 1400px;
+  height: calc(100vh - 150px);
+  max-height: 85vh;
+  overflow: auto;
+  border: 2px solid #555;
+  border-radius: 6px;
+  background: #fff;
+  box-sizing: border-box;
+  display: block;
+  margin: 0 auto; 
+}
+
+.mapa-contenido {
+  transform-origin: top left;
+  transition: transform 0.15s ease-out;
+  display: block;
+}
+
+.mapa-svg {
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+  display: block;
+  background: #fff;
+}
+
+.mapa-cargando {
+  padding: 80px;
+  text-align: center;
+  font-size: 18px;
+  color: #666;
+}

@@ -1,0 +1,134 @@
+.carrito-container {
+  max-width: 800px;
+  margin: auto;
+  padding: 20px;
+}
+
+.carrito-container h2 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.carrito-vacio {
+  text-align: center;
+  color: gray;
+}
+
+.carrito-lista {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.carrito-item{
+    display:flex;
+    align-items:center;
+    gap:20px;
+    background:white;
+    border-radius:15px;
+    padding:18px;
+    margin-bottom:18px;
+    box-shadow:0 5px 15px rgba(0,0,0,.08);
+}
+
+.carrito-imagen{
+    width:100px;
+    height:100px;
+    object-fit:cover;
+    border-radius:12px;
+}
+
+.carrito-info{
+    flex:1;
+}
+
+.carrito-info h3{
+    margin-bottom:8px;
+}
+
+.carrito-info p{
+    color:#777;
+    margin-bottom:10px;
+}
+
+.carrito-cantidad{
+    display:flex;
+    align-items:center;
+    gap:12px;
+}
+
+.carrito-cantidad button{
+    width:35px;
+    height:35px;
+    border:none;
+    border-radius:8px;
+    cursor:pointer;
+    font-size:18px;
+}
+
+.carrito-subtotal{
+    width:150px;
+    text-align:right;
+    font-size:18px;
+}
+
+.btn-eliminar{
+    background:#ff4444;
+    color:white;
+    border:none;
+    border-radius:8px;
+    padding:10px 15px;
+    cursor:pointer;
+}
+
+.info h4 {
+  margin: 0;
+}
+
+.acciones {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.acciones input {
+  width: 60px;
+  padding: 5px;
+}
+
+.btn-eliminar {
+  background: red;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.carrito-footer {
+  margin-top: 20px;
+  text-align: right;
+}
+
+.botones {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.btn-vaciar {
+  background: gray;
+  color: white;
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+}
+
+.btn-comprar {
+  background: #21b15d;
+  color: white;
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+}
