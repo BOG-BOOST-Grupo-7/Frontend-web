@@ -66,7 +66,9 @@ function Header() {
       }
     };
 
-    cargarDatos();
+    cargarDatos().catch((error) => {
+      console.error("Error al ejecutar cargarDatos:", error);
+    });
   }, [isAuthenticated, user, perfil]);
 
   const cargarNotificaciones = async () => {
