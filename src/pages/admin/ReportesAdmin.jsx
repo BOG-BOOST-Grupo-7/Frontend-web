@@ -52,7 +52,7 @@ export default function ReportesAdmin() {
   const aniosDisponibles = useMemo(() => {
     if (!reportes?.usuariosPorMes) return [];
     const anios = new Set(Object.keys(reportes.usuariosPorMes).map(m => m.split("-")[0]));
-    return Array.from(anios).sort().reverse();
+    return Array.from(anios).sort((a, b) => b.localeCompare(a));
   }, [reportes]);
 
   // 2. Filtrar datos mensuales por año
@@ -73,7 +73,7 @@ export default function ReportesAdmin() {
   const mesesDisponibles = useMemo(() => {
     if (!reportes?.usuariosPorSemana) return [];
     const meses = new Set(Object.keys(reportes.usuariosPorSemana).map(s => s.slice(0, 7)));
-    return Array.from(meses).sort().reverse();
+    return Array.from(meses).sort((a, b) => b.localeCompare(a));
   }, [reportes]);
 
   // 4. Filtrar datos semanales por mes

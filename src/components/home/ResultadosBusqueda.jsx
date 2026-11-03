@@ -78,7 +78,7 @@ const ResultadosBusqueda = () => {
         set.add(p.categoria.nombre_categoria);
       }
     });
-    return Array.from(set).sort();
+    return Array.from(set).sort((a, b) => a.localeCompare(b));
   }, [resultados.productos]);
 
   // PRODUCTOS FILTRADOS Y ORDENADOS
