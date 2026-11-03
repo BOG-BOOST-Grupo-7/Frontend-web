@@ -54,10 +54,19 @@ function Header() {
   const fotoPerfil = perfil?.foto_perfil || user?.foto_perfil || user?.logo;
 
   useEffect(() => {
-    cargarCategorias();
-    if (isAuthenticated) {
-      cargarNotificaciones();
-    }
+    const cargarDatos = async () => {
+      try {
+        await cargarCategorias();
+
+        if (isAuthenticated) {
+          await cargarNotificaciones();
+        }
+      } catch (error) {
+        console.error("Error al cargar los datos:", error);
+      }
+    };
+
+    cargarDatos();
   }, [isAuthenticated, user, perfil]);
 
   const cargarNotificaciones = async () => {
