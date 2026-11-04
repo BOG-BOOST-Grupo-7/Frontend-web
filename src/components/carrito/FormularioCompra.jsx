@@ -51,13 +51,17 @@ function FormularioCompra({
     useEffect(() => {
         if (carrito && carrito.length > 0) {
             const id = carrito[0].id_negocio;
+
             if (id !== undefined && id !== null) {
-                cargarDatos(id);
+                void cargarDatos(id);
             }
         }
-        cargarPerfil();
-        cargarDatosUltimaCompra();
     }, [carrito]);
+
+    useEffect(() => {
+        void cargarPerfil();
+        void cargarDatosUltimaCompra();
+    }, []);
 
     const cargarDatos = async (id) => {
         try {
