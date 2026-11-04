@@ -221,67 +221,138 @@ function FormularioCompra({
                     <div className="contenido-compra">
                         <div className="seccion-compra">
                             <h3>Datos del comprador</h3>
-                            <label>Primer nombre</label>
-                            <input className="campo-compra" type="text" name="primer_nombre" value={perfil.primer_nombre} onChange={handlePerfilChange} />
-                            <label>Segundo nombre</label>
-                            <input className="campo-compra" type="text" name="segundo_nombre" value={perfil.segundo_nombre} onChange={handlePerfilChange} />
-                            <label>Primer apellido</label>
-                            <input className="campo-compra" type="text" name="primer_apellido" value={perfil.primer_apellido} onChange={handlePerfilChange} />
-                            <label>Segundo apellido</label>
-                            <input className="campo-compra" type="text" name="segundo_apellido" value={perfil.segundo_apellido} onChange={handlePerfilChange} />
-                            <label>Tipo documento</label>
-                            <select className="campo-compra" name="id_tipo_documento" value={perfil.id_tipo_documento} onChange={handlePerfilChange}>
+
+                            <label htmlFor="primer_nombre">Primer nombre</label>
+                            <input
+                                id="primer_nombre"
+                                className="campo-compra"
+                                type="text"
+                                name="primer_nombre"
+                                value={perfil.primer_nombre}
+                                onChange={handlePerfilChange}
+                            />
+
+                            <label htmlFor="segundo_nombre">Segundo nombre</label>
+                            <input
+                                id="segundo_nombre"
+                                className="campo-compra"
+                                type="text"
+                                name="segundo_nombre"
+                                value={perfil.segundo_nombre}
+                                onChange={handlePerfilChange}
+                            />
+
+                            <label htmlFor="primer_apellido">Primer apellido</label>
+                            <input
+                                id="primer_apellido"
+                                className="campo-compra"
+                                type="text"
+                                name="primer_apellido"
+                                value={perfil.primer_apellido}
+                                onChange={handlePerfilChange}
+                            />
+
+                            <label htmlFor="segundo_apellido">Segundo apellido</label>
+                            <input
+                                id="segundo_apellido"
+                                className="campo-compra"
+                                type="text"
+                                name="segundo_apellido"
+                                value={perfil.segundo_apellido}
+                                onChange={handlePerfilChange}
+                            />
+
+                            <label htmlFor="id_tipo_documento">Tipo documento</label>
+                            <select
+                                id="id_tipo_documento"
+                                className="campo-compra"
+                                name="id_tipo_documento"
+                                value={perfil.id_tipo_documento}
+                                onChange={handlePerfilChange}
+                            >
                                 <option value="">Seleccione...</option>
                                 <option value="1">Cédula de Ciudadanía</option>
                                 <option value="2">Cédula de Extranjería</option>
                             </select>
-                            <label>Número documento</label>
-                            <input className="campo-compra" type="text" name="numero_documento" value={perfil.numero_documento} onChange={handlePerfilChange} />
-                            <label>Correo electrónico</label>
-                            <input className="campo-compra" type="email" value={perfil.email} disabled />
+
+                            <label htmlFor="numero_documento">Número documento</label>
+                            <input
+                                id="numero_documento"
+                                className="campo-compra"
+                                type="text"
+                                name="numero_documento"
+                                value={perfil.numero_documento}
+                                onChange={handlePerfilChange}
+                            />
+
+                            <label htmlFor="email">Correo electrónico</label>
+                            <input
+                                id="email"
+                                className="campo-compra"
+                                type="email"
+                                name="email"
+                                value={perfil.email}
+                                disabled
+                            />
                         </div>
 
                         <div className="seccion-compra">
                             <h3>Datos de la compra</h3>
-                            <label>Medio de pago</label>
-                            <select className="campo-compra" value={idMedioPago} onChange={(e) => setIdMedioPago(e.target.value)}>
+
+                            <label htmlFor="idMedioPago">Medio de pago</label>
+                            <select
+                                id="idMedioPago"
+                                className="campo-compra"
+                                value={idMedioPago}
+                                onChange={(e) => setIdMedioPago(e.target.value)}
+                            >
                                 <option value="">Seleccione...</option>
                                 {mediosPago.map((medio) => (
-                                    <option key={medio.id_medio_pago} value={medio.id_medio_pago}>{medio.nombre_medio}</option>
+                                    <option key={medio.id_medio_pago} value={medio.id_medio_pago}>
+                                        {medio.nombre_medio}
+                                    </option>
                                 ))}
                             </select>
 
-                            {/* 👇 MÉTODO DE ENVÍO CON SU DESCRIPCIÓN */}
-                            <label>Método de envío</label>
-                            <select className="campo-compra" value={idMetodoEnvio} onChange={(e) => setIdMetodoEnvio(e.target.value)}>
+                            <label htmlFor="idMetodoEnvio">Método de envío</label>
+                            <select
+                                id="idMetodoEnvio"
+                                className="campo-compra"
+                                value={idMetodoEnvio}
+                                onChange={(e) => setIdMetodoEnvio(e.target.value)}
+                            >
                                 <option value="">Seleccione...</option>
                                 {metodosEnvio.map((metodo) => (
-                                    <option key={metodo.id_metodo_envio} value={metodo.id_metodo_envio}>{metodo.nombre_metodo}</option>
+                                    <option key={metodo.id_metodo_envio} value={metodo.id_metodo_envio}>
+                                        {metodo.nombre_metodo}
+                                    </option>
                                 ))}
                             </select>
+
                             {metodoSeleccionado?.descripcion_metodo && (
                                 <p className="descripcion-envio">
                                     <strong>Descripción:</strong> {metodoSeleccionado.descripcion_metodo}
                                 </p>
                             )}
 
-                            <label>Teléfono</label>
-                            <input 
-                                className="campo-compra" 
-                                type="text" 
-                                value={telefono} 
-                                onChange={handleTelefonoChange} 
+                            <label htmlFor="telefono">Teléfono</label>
+                            <input
+                                id="telefono"
+                                className="campo-compra"
+                                type="text"
+                                value={telefono}
+                                onChange={handleTelefonoChange}
                                 placeholder="Ej: 3001234567"
                                 maxLength="10"
                             />
 
-                            {/* Dirección profesional para Bogotá */}
-                            <label>Dirección (Bogotá D.C.)</label>
+                            <label htmlFor="direccion">Dirección (Bogotá D.C.)</label>
                             <div className="direccion-grid">
-                                <select 
-                                    className="campo-compra direccion-campo" 
-                                    name="tipoVia" 
-                                    value={direccion.tipoVia} 
+                                <select
+                                    id="direccion"
+                                    className="campo-compra direccion-campo"
+                                    name="tipoVia"
+                                    value={direccion.tipoVia}
                                     onChange={handleDireccionChange}
                                     style={{ flex: '0 0 110px' }}
                                 >
