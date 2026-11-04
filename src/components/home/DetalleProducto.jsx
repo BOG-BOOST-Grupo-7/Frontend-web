@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams, useNavigate, Link } from "react-router-dom";
 import { FaArrowLeft, FaShoppingCart, FaStar, FaSearchPlus, FaTimes } from "react-icons/fa";
 import { useCarrito } from "../../context/CarritoContext";
 import { useAuth } from "../../context/AuthContext";
@@ -88,9 +88,12 @@ function DetalleProducto() {
             <div className="detalle-card">
                 
                 {/* Imagen con efecto Zoom */}
-                <div 
-                    className="detalle-imagen-container" 
+                <button
+                    type="button"
+                    className="detalle-imagen-container"
                     onClick={() => producto.imagen && setImagenExpandida(true)}
+                    disabled={!producto.imagen}
+                    aria-label="Ampliar imagen del producto"
                 >
                     {producto.imagen ? (
                         <>
@@ -99,15 +102,15 @@ function DetalleProducto() {
                                 alt={producto.nombre_producto} 
                                 className="imagen-principal"
                             />
-                            <div className="overlay-zoom">
+                            <span className="overlay-zoom">
                                 <FaSearchPlus />
                                 <span>Ampliar imagen</span>
-                            </div>
+                            </span>
                         </>
                     ) : (
-                        <div className="sin-imagen">Sin imagen</div>
+                        <span className="sin-imagen">Sin imagen</span>
                     )}
-                </div>
+                </button>
 
                 {/* Información del producto */}
                 <div className="detalle-info">
@@ -152,21 +155,29 @@ function DetalleProducto() {
                     </div>
 
                     {/* Tarjeta del Vendedor */}
-                    <div
+                    <Link
+                        to={`/negocios/${producto.id_negocio}`}
                         className="info-negocio"
-                        onClick={() => navigate(`/negocios/${producto.id_negocio}`)}
                     >
                         {producto.negocio?.logo ? (
-                            <img src={producto.negocio.logo} className="logo-negocioo" alt="Logo" />
+                            <img
+                                src={producto.negocio.logo}
+                                className="logo-negocioo"
+                                alt="Logo"
+                            />
                         ) : (
-                            <div className="logo-placeholder">{producto.negocio?.nombre_negocio?.charAt(0)}</div>
+                            <div className="logo-placeholder">
+                                {producto.negocio?.nombre_negocio?.charAt(0)}
+                            </div>
                         )}
+
                         <div className="negocio-textos">
                             <small>Vendido por</small>
                             <h3>{producto.negocio?.nombre_negocio}</h3>
                         </div>
+
                         <span className="ver-tienda">Ver tienda</span>
-                    </div>
+                    </Link>
                 </div>
             </div>
 
@@ -209,12 +220,26 @@ function DetalleProducto() {
 
             {/* ================= MODAL PARA VER LA IMAGEN EN GRANDE ================= */}
             {imagenExpandida && producto.imagen && (
-                <div className="modal-imagen-overlay" onClick={() => setImagenExpandida(false)}>
-                    <div className="modal-imagen-content" onClick={(e) => e.stopPropagation()}>
-                        <button className="btn-cerrar-imagen" onClick={() => setImagenExpandida(false)}>
+                <div
+                    className="modal-imagen-overlay"
+                    role="dialog"
+                    aria-modal="true"
+                    aria-label="Imagen ampliada del producto"
+                >
+                    <div className="modal-imagen-content">
+                        <button
+                            type="button"
+                            className="btn-cerrar-imagen"
+                            onClick={() => setImagenExpandida(false)}
+                            aria-label="Cerrar imagen ampliada"
+                        >
                             <FaTimes />
                         </button>
-                        <img src={producto.imagen} alt={producto.nombre_producto} />
+
+                        <img
+                            src={producto.imagen}
+                            alt={producto.nombre_producto}
+                        />
                     </div>
                 </div>
             )}
