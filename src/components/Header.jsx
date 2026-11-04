@@ -99,6 +99,87 @@ function Header() {
     }
   };
 
+  function CatalogoMenu({ id, categorias, catalogoOpen, onToggle, onClose, textoVacio }) {
+  return (
+    <div className="catalogo-container">
+      <button
+        type="button"
+        className="catalogo-link"
+        aria-expanded={catalogoOpen}
+        aria-controls={id}
+        onClick={onToggle}
+      >
+        Categorías
+        <i className={`fas fa-chevron-down dropdown-arrow ${catalogoOpen ? "rotate" : ""}`}></i>
+      </button>
+
+      <div
+        id={id}
+        className={`catalogo-dropdown ${catalogoOpen ? "show" : ""}`}
+      >
+        {categorias.length > 0 ? (
+          categorias.map((cat) => (
+            <Link
+              key={cat.id_categoria}
+              to={`/categoria/${cat.id_categoria}`}
+              onClick={onClose}
+            >
+              <i className="fas fa-tag"></i> {cat.nombre_categoria}
+            </Link>
+          ))
+        ) : (
+          <span className="dropdown-empty">{textoVacio}</span>
+        )}
+      </div>
+    </div>
+  );
+}
+
+function NavegacionPrincipal({
+  rol,
+  cerrarMenus,
+  categorias,
+  catalogoOpen,
+  toggleCatalogo,
+  dropdownId,
+  textoVacio
+}) {
+  if (rol === "SUPER_ADMIN" || rol === "ADMINISTRADOR") {
+    return (
+      <Link to="/admin" onClick={cerrarMenus}>
+        Panel Principal
+      </Link>
+    );
+  }
+
+  if (rol === "VENDEDOR") {
+    return (
+      <>
+        <Link to="/vendedor" onClick={cerrarMenus}>Perfil Negocio</Link>
+        <Link to="/ventas" onClick={cerrarMenus}>Ventas</Link>
+        <Link to="/stock" onClick={cerrarMenus}>Inventario y Stock</Link>
+      </>
+    );
+  }
+
+  return (
+    <>
+      <Link to="/" onClick={cerrarMenus}>Inicio</Link>
+
+      <CatalogoMenu
+        id={dropdownId}
+        categorias={categorias}
+        catalogoOpen={catalogoOpen}
+        onToggle={toggleCatalogo}
+        onClose={cerrarMenus}
+        textoVacio={textoVacio}
+      />
+
+      <Link to="/negocios" onClick={cerrarMenus}>Negocios</Link>
+    </>
+  );
+}
+
   return (
     <header className="navbar">
 
@@ -108,53 +189,15 @@ function Header() {
 
       {/* MENU ESCRITORIO */}
       <nav className="menu">
-        {rol === "SUPER_ADMIN" || rol === "ADMINISTRADOR" ? (
-          <Link to="/admin" onClick={cerrarMenus}>
-            Panel Principal
-          </Link>
-        ) : rol === "VENDEDOR" ? (
-          <>
-            <Link to="/vendedor" onClick={cerrarMenus}>Perfil Negocio</Link>
-            <Link to="/ventas" onClick={cerrarMenus}>Ventas</Link>
-            <Link to="/stock" onClick={cerrarMenus}>Inventario y Stock</Link>
-          </>
-        ) : (
-          <>
-            <Link to="/" onClick={cerrarMenus}>Inicio</Link>
-            <div className="catalogo-container">
-              <button
-                type="button"
-                className="catalogo-link"
-                aria-expanded={catalogoOpen}
-                aria-controls="categorias-dropdown-desktop"
-                onClick={() => setCatalogoOpen(!catalogoOpen)}
-              >
-                Categorías
-                <i className={`fas fa-chevron-down dropdown-arrow ${catalogoOpen ? "rotate" : ""}`}></i>
-              </button>
-
-              <div
-                id="categorias-dropdown-desktop"
-                className={`catalogo-dropdown ${catalogoOpen ? "show" : ""}`}
-              >
-                {categorias.length > 0 ? (
-                  categorias.map((cat) => (
-                    <Link
-                      key={cat.id_categoria}
-                      to={`/categoria/${cat.id_categoria}`}
-                      onClick={cerrarMenus}
-                    >
-                      <i className="fas fa-tag"></i> {cat.nombre_categoria}
-                    </Link>
-                  ))
-                ) : (
-                  <span className="dropdown-empty">Cargando...</span>
-                )}
-              </div>
-            </div>
-            <Link to="/negocios" onClick={cerrarMenus}>Negocios</Link>
-          </>
-        )}
+        <NavegacionPrincipal
+          rol={rol}
+          cerrarMenus={cerrarMenus}
+          categorias={categorias}
+          catalogoOpen={catalogoOpen}
+          toggleCatalogo={() => setCatalogoOpen(!catalogoOpen)}
+          dropdownId="categorias-dropdown-desktop"
+          textoVacio="Cargando..."
+        />
       </nav>
 
       {/* SEARCH CONECTADO */}
@@ -299,24 +342,16 @@ function Header() {
                 <i className={`fas fa-chevron-down dropdown-arrow ${catalogoOpen ? "rotate" : ""}`}></i>
               </button>
 
-              <div
-                id="categorias-dropdown-mobile"
-                className={`catalogo-dropdown ${catalogoOpen ? "show" : ""}`}
-              >
-                {categorias.length > 0 ? (
-                  categorias.map((cat) => (
-                    <Link
-                      key={cat.id_categoria}
-                      to={`/categoria/${cat.id_categoria}`}
-                      onClick={cerrarMenus}
-                    >
-                      <i className="fas fa-tag"></i> {cat.nombre_categoria}
-                    </Link>
-                  ))
-                ) : (
-                  <span className="dropdown-empty">No hay categorías</span>
-                )}
-              </div>
+              <NavegacionPrincipal
+                rol={rol}
+                cerrarMenus={cerrarMenus}
+                categorias={categorias}
+                catalogoOpen={catalogoOpen}
+                toggleCatalogo={() => setCatalogoOpen(!catalogoOpen)}
+                dropdownId="categorias-dropdown-mobile"
+                textoVacio="No hay categorías"
+              />
+              
             </div>
             <Link to="/negocios" onClick={cerrarMenus}>Negocios</Link>
           </>
