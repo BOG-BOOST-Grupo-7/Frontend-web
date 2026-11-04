@@ -1,7 +1,7 @@
 import "../styles/Header.css";
 import { useEffect, useState } from "react";
 import { obtenerNotificaciones } from "../api/notificacionApi";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import logo from "../assets/logo.png";
 import { obtenerCategorias } from "../api/categoriaApi";
 import { useAuth } from "../context/AuthContext";
@@ -21,6 +21,10 @@ function Header() {
 
   const go = (path) => {
     navigate(path);
+    cerrarMenus();
+  };
+
+  const cerrarMenus = () => {
     setCatalogoOpen(false);
     setMobileMenuOpen(false);
   };
@@ -98,49 +102,57 @@ function Header() {
   return (
     <header className="navbar">
 
-      <div className="logo-container" onClick={() => go("/")} style={{ cursor: "pointer" }}>
+      <Link to="/" className="logo-container" onClick={cerrarMenus}>
         <img src={logo} alt="Logo" className="logo" />
-      </div>
+      </Link>
 
       {/* MENU ESCRITORIO */}
       <nav className="menu">
         {rol === "SUPER_ADMIN" || rol === "ADMINISTRADOR" ? (
-          <a onClick={() => go("/admin")}>Panel Principal</a>
+          <Link to="/admin" onClick={cerrarMenus}>
+            Panel Principal
+          </Link>
         ) : rol === "VENDEDOR" ? (
           <>
-            <a onClick={() => go("/vendedor")}>Perfil Negocio</a>
-            <a onClick={() => go("/ventas")}>Ventas</a>
-            <a onClick={() => go("/stock")}>Inventario y Stock</a>
+            <Link to="/vendedor" onClick={cerrarMenus}>Perfil Negocio</Link>
+            <Link to="/ventas" onClick={cerrarMenus}>Ventas</Link>
+            <Link to="/stock" onClick={cerrarMenus}>Inventario y Stock</Link>
           </>
         ) : (
           <>
-            <a onClick={() => go("/")}>Inicio</a>
+            <Link to="/" onClick={cerrarMenus}>Inicio</Link>
             <div className="catalogo-container">
-              <a
+              <button
+                type="button"
                 className="catalogo-link"
-                onClick={(e) => {
-                  e.preventDefault();
-                  setCatalogoOpen(!catalogoOpen);
-                }}
+                aria-expanded={catalogoOpen}
+                aria-controls="categorias-dropdown-desktop"
+                onClick={() => setCatalogoOpen(!catalogoOpen)}
               >
-                Categorías <i className={`fas fa-chevron-down dropdown-arrow ${catalogoOpen ? "rotate" : ""}`}></i>
-              </a>
-              <div className={`catalogo-dropdown ${catalogoOpen ? "show" : ""}`}>
+                Categorías
+                <i className={`fas fa-chevron-down dropdown-arrow ${catalogoOpen ? "rotate" : ""}`}></i>
+              </button>
+
+              <div
+                id="categorias-dropdown-desktop"
+                className={`catalogo-dropdown ${catalogoOpen ? "show" : ""}`}
+              >
                 {categorias.length > 0 ? (
                   categorias.map((cat) => (
-                    <a
+                    <Link
                       key={cat.id_categoria}
-                      onClick={() => go(`/categoria/${cat.id_categoria}`)}
+                      to={`/categoria/${cat.id_categoria}`}
+                      onClick={cerrarMenus}
                     >
                       <i className="fas fa-tag"></i> {cat.nombre_categoria}
-                    </a>
+                    </Link>
                   ))
                 ) : (
                   <span className="dropdown-empty">Cargando...</span>
                 )}
               </div>
             </div>
-            <a onClick={() => go("/negocios")}>Negocios</a>
+            <Link to="/negocios" onClick={cerrarMenus}>Negocios</Link>
           </>
         )}
       </nav>
@@ -155,52 +167,83 @@ function Header() {
             onChange={(e) => setSearchTerm(e.target.value)}
             onKeyDown={handleSearch}
           />
-          <i className="fas fa-search" onClick={handleSearch} style={{ cursor: "pointer" }}></i>
+          <button
+            type="button"
+            className="search-button"
+            aria-label="Buscar"
+            onClick={handleSearch}
+          >
+            <i className="fas fa-search"></i>
+          </button>
         </div>
       )}
 
       {/* ICONOS */}
       <div className="user-icons">
         {isAuthenticated && (
-          <div className="user-profile" onClick={() => go("/perfil")}>
+          <Link
+            to="/perfil"
+            className="user-profile"
+            onClick={cerrarMenus}
+            aria-label="Ir al perfil"
+          >
             {fotoPerfil ? (
-              <img 
-                src={fotoPerfil} 
-                alt="Perfil" 
+              <img
+                src={fotoPerfil}
+                alt="Perfil"
                 style={{
                   width: "40px",
                   height: "40px",
                   borderRadius: "50%",
                   objectFit: "cover",
                   border: "2px solid #2c1810"
-                }} 
+                }}
               />
             ) : (
               <div className="user-avatar">{avatarLetter}</div>
             )}
-          </div>
+          </Link>
         )}
 
         {rol !== "SUPER_ADMIN" && rol !== "ADMINISTRADOR" && rol !== "VENDEDOR" && (
-          <div className="cart-icon" onClick={() => go("/carrito")}>
+          <Link
+            to="/carrito"
+            className="cart-icon"
+            onClick={cerrarMenus}
+            aria-label="Ir al carrito"
+          >
             <i className="fas fa-shopping-cart"></i>
-          </div>
+          </Link>
         )}
 
         {isAuthenticated && (
-          <div className="bell-container" onClick={() => go("/notificaciones")}>
+          <Link
+            to="/notificaciones"
+            className="bell-container"
+            onClick={cerrarMenus}
+            aria-label={`Notificaciones: ${pendientes} pendientes`}
+          >
             <i className="fas fa-bell"></i>
             {pendientes > 0 && <span className="badge">{pendientes}</span>}
-          </div>
+          </Link>
         )}
 
-        <div className="mobile-toggle" onClick={() => setMobileMenuOpen(true)}>
+        <button
+          type="button"
+          className="mobile-toggle"
+          aria-label="Abrir menú"
+          aria-expanded={mobileMenuOpen}
+          onClick={() => setMobileMenuOpen(true)}
+        >
           <i className="fas fa-bars"></i>
-        </div>
+        </button>
       </div>
 
-      <div
+      <button
+        type="button"
         className={`mobile-overlay ${mobileMenuOpen ? "show" : ""}`}
+        aria-label="Cerrar menú"
+        tabIndex={mobileMenuOpen ? 0 : -1}
         onClick={() => setMobileMenuOpen(false)}
       />
 
@@ -234,76 +277,88 @@ function Header() {
         </div>
 
         {rol === "SUPER_ADMIN" || rol === "ADMINISTRADOR" ? (
-          <a onClick={() => go("/admin")}>Panel Principal</a>
+          <Link to="/admin" onClick={cerrarMenus}>Panel Principal</Link>
         ) : rol === "VENDEDOR" ? (
           <>
-            <a onClick={() => go("/vendedor")}>Perfil Negocio</a>
-            <a onClick={() => go("/ventas")}>Ventas</a>
-            <a onClick={() => go("/stock")}>Inventario y Stock</a>
+            <Link to="/vendedor" onClick={cerrarMenus}>Perfil Negocio</Link>
+            <Link to="/ventas" onClick={cerrarMenus}>Ventas</Link>
+            <Link to="/stock" onClick={cerrarMenus}>Inventario y Stock</Link>
           </>
         ) : (
           <>
-            <a onClick={() => go("/")}>Inicio</a>
+            <Link to="/" onClick={cerrarMenus}>Inicio</Link>
             <div className="catalogo-container">
-              <a
+              <button
+                type="button"
                 className="catalogo-link"
-                onClick={(e) => {
-                  e.preventDefault();
-                  setCatalogoOpen(!catalogoOpen);
-                }}
+                aria-expanded={catalogoOpen}
+                aria-controls="categorias-dropdown-mobile"
+                onClick={() => setCatalogoOpen(!catalogoOpen)}
               >
-                Categorías <i className={`fas fa-chevron-down dropdown-arrow ${catalogoOpen ? "rotate" : ""}`}></i>
-              </a>
-              <div className={`catalogo-dropdown ${catalogoOpen ? "show" : ""}`}>
+                Categorías
+                <i className={`fas fa-chevron-down dropdown-arrow ${catalogoOpen ? "rotate" : ""}`}></i>
+              </button>
+
+              <div
+                id="categorias-dropdown-mobile"
+                className={`catalogo-dropdown ${catalogoOpen ? "show" : ""}`}
+              >
                 {categorias.length > 0 ? (
                   categorias.map((cat) => (
-                    <a
+                    <Link
                       key={cat.id_categoria}
-                      onClick={() => go(`/categoria/${cat.id_categoria}`)}
+                      to={`/categoria/${cat.id_categoria}`}
+                      onClick={cerrarMenus}
                     >
                       <i className="fas fa-tag"></i> {cat.nombre_categoria}
-                    </a>
+                    </Link>
                   ))
                 ) : (
                   <span className="dropdown-empty">No hay categorías</span>
                 )}
               </div>
             </div>
-            <a onClick={() => go("/negocios")}>Negocios</a>
+            <Link to="/negocios" onClick={cerrarMenus}>Negocios</Link>
           </>
         )}
 
         {!isAuthenticated ? (
           <>
-            <a onClick={() => go("/registrar-negocio")}>Registrar negocio</a>
-            <a onClick={() => go("/login")}>Iniciar Sesión</a>
-            <a onClick={() => go("/registro")}>Registro</a>
+            <Link to="/registrar-negocio" onClick={cerrarMenus}>Registrar negocio</Link>
+            <Link to="/login" onClick={cerrarMenus}>Iniciar Sesión</Link>
+            <Link to="/registro" onClick={cerrarMenus}>Registro</Link>
           </>
         ) : rol === "CLIENTE" ? (
           <>
-            <a onClick={() => go("/perfil")}>Mi Perfil</a>
-            <a onClick={() => go("/historial")}>Historial/Compras</a>
-            <a onClick={() => go("/contacto")}>Contáctenos/PQRS</a>
-            <a onClick={() => go("/registrar-negocio")}>Registrar negocio</a>
+            <Link to="/perfil" onClick={cerrarMenus}>Mi Perfil</Link>
+            <Link to="/historial" onClick={cerrarMenus}>Historial/Compras</Link>
+            <Link to="/contacto" onClick={cerrarMenus}>Contáctenos/PQRS</Link>
+            <Link to="/registrar-negocio" onClick={cerrarMenus}>Registrar negocio</Link>
           </>
         ) : rol === "SUPER_ADMIN" || rol === "ADMINISTRADOR" ? (
           <>
-            <a onClick={() => go("/perfil")}>Perfil</a>
-            <a onClick={() => go("/admin/negocios")}>Negocios</a>
-            <a onClick={() => go("/admin/usuarios")}>Usuarios</a>
-            <a onClick={() => go("/admin/solicitudes")}>Solicitudes</a>
-            <a onClick={() => go("/admin/pqrs")}>PQRS</a>
-            <a onClick={() => go("/ventas")}>Reportes</a>
+            <Link to="/perfil" onClick={cerrarMenus}>Perfil</Link>
+            <Link to="/admin/negocios" onClick={cerrarMenus}>Negocios</Link>
+            <Link to="/admin/usuarios" onClick={cerrarMenus}>Usuarios</Link>
+            <Link to="/admin/solicitudes" onClick={cerrarMenus}>Solicitudes</Link>
+            <Link to="/admin/pqrs" onClick={cerrarMenus}>PQRS</Link>
+            <Link to="/ventas" onClick={cerrarMenus}>Reportes</Link>
           </>
         ) : rol === "VENDEDOR" ? (
           <>
-            <a onClick={() => go("/perfil")}>Perfil</a>
-            <a onClick={() => go("/contacto")}>Contáctenos/PQRS</a>
+            <Link to="/perfil" onClick={cerrarMenus}>Perfil</Link>
+            <Link to="/contacto" onClick={cerrarMenus}>Contáctenos/PQRS</Link>
           </>
         ) : null}
 
         {isAuthenticated && (
-          <a className="logout" onClick={handleLogout}>Cerrar Sesión</a>
+          <button
+            type="button"
+            className="logout"
+            onClick={handleLogout}
+          >
+            Cerrar Sesión
+          </button>
         )}
       </div>
     </header>

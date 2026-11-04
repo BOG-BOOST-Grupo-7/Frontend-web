@@ -36,19 +36,31 @@ html, body {
 /* ================= MENU ================= */
 .menu {
     display: flex;
-    gap: 25px;
+    gap: 40px; /* Ajusta este valor si quieres más o menos espacio entre ellos */
     align-items: center;
 }
 
-.menu a {
+/* Unificamos los enlaces <a> y el botón de categorías */
+.menu a,
+.menu .catalogo-link {
+    font-family: Arial, sans-serif;
     font-weight: bold;
-    font-size: 18px;
+    font-size: 18px; /* Mismo tamaño para todos */
     cursor: pointer;
     text-decoration: none;
     color: black;
     display: flex;
     align-items: center;
-    gap: 5px;
+    gap: 6px; /* Espacio entre el texto y la flechita */
+    padding: 0;
+    margin: 0;
+    border: none;
+    background: transparent;
+    line-height: normal;
+}
+
+.menu .catalogo-link i.dropdown-arrow {
+    font-size: 14px !important; /* Tamaño más pequeño para la flecha */
 }
 
 /* ================= ICONOS GLOBALES ================= */
@@ -412,22 +424,38 @@ html, body {
     position: relative;
 }
 
-.mobile-menu .catalogo-link {
+/* Igualamos el estilo al de los demás enlaces del menú móvil */
+.mobile-menu .catalogo-link,
+.mobile-menu .catalogo-link:focus,
+.mobile-menu .catalogo-link:active,
+.mobile-menu .catalogo-link:visited {
     padding: 15px 25px !important;
-    border-bottom: 1px solid #eee;
+    border: none !important; /* Quitamos cualquier borde nativo */
+    border-bottom: 1px solid #eee !important; /* Solo dejamos la línea divisoria */
     cursor: pointer;
     text-decoration: none;
-    color: black;
+    color: black !important;
     font-size: 16px;
     font-weight: normal;
     display: flex;
     align-items: center;
     justify-content: space-between;
     width: 100%;
+    background: transparent !important; /* Forzamos transparencia */
+    font-family: inherit;
+    outline: none !important; /* Quita el borde de enfoque al hacer clic */
+    box-shadow: none !important; /* Quita sombras internas nativas */
 }
 
+/* 2. Controlamos el hover EXACTAMENTE igual que los demás enlaces */
 .mobile-menu .catalogo-link:hover {
-    background: #fff5df;
+    background: #fff5df !important; /* El mismo color de hover que tus otros enlaces */
+    color: black !important;
+}
+
+/* 3. Quitamos el hover si el desplegable está abierto (opcional, para que no se quede gris) */
+.mobile-menu .catalogo-link.active {
+    background: transparent !important;
 }
 
 .mobile-menu .catalogo-dropdown {
@@ -447,14 +475,14 @@ html, body {
     animation: mobileDropdownFade 0.2s ease-in-out;
 }
 
-@keyframes mobileDropdownFade {
+@keyframes dropdownFade {
     from {
         opacity: 0;
-        transform: translateY(-4px);
+        transform: translate(-50%, -8px);
     }
     to {
         opacity: 1;
-        transform: translateY(0);
+        transform: translate(-50%, 0);
     }
 }
 
@@ -510,4 +538,37 @@ html, body {
     .user-name {
         display: none;
     }
+}
+
+.search-button,
+.mobile-toggle,
+.mobile-overlay {
+  font: inherit;
+  cursor: pointer;
+}
+
+.search-button,
+.mobile-toggle {
+  border: none;
+  background: transparent;
+}
+
+.logo-container,
+.user-profile,
+.cart-icon,
+.bell-container {
+  text-decoration: none;
+  color: inherit;
+}
+
+.menu .catalogo-dropdown {
+    position: absolute;
+    top: calc(100% + 12px);
+    left: 50%;
+    transform: translateX(-50%);
+
+    min-width: 300px;
+    max-width: 350px;
+
+    z-index: 9999;
 }
