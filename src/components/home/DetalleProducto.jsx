@@ -26,7 +26,7 @@ function DetalleProducto() {
     const [imagenExpandida, setImagenExpandida] = useState(false);
 
     useEffect(() => {
-        cargarProducto();
+        void cargarProducto();
         setCantidad(1);
         setMostrarTodos(false); 
     }, [id]);

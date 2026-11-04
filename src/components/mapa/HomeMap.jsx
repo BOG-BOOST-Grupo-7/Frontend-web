@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import './MapaMercado.css';
+import '../../styles/MapaMercado.css';
 
 const HomeMap = () => {
   return (

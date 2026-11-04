@@ -1,8 +1,8 @@
 import { useState, useEffect, useCallback } from 'react';
-import { getAllStands, getNegociosAprobados } from '../api/puestoApi'; // 👈 Usa la API, no Supabase
-import MapaSVG from '../components/mapa/MapaSVG';
-import ModalInfoPuesto from '../components/mapa/ModalInfoPuesto';
-import './MapaMercadoPagina.css';
+import { getAllStands, getNegociosAprobados } from '../../api/puestoApi'; // 👈 Usa la API, no Supabase
+import MapaSVG from '../../components/mapa/MapaSVG';
+import ModalInfoPuesto from '../../components/mapa/ModalInfoPuesto';
+import '../../styles/MapaMercadoPagina.css';
 
 const MapaMercadoPagina = () => {
   const [escala, setEscala] = useState(1);

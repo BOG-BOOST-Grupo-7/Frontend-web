@@ -1,5 +1,5 @@
 import { useNavigate } from 'react-router-dom';
-import './ModalInfoPuesto.css';
+import '../../styles/ModalInfoPuesto.css';
 
 const ModalInfoPuesto = ({ puesto, negocio, alCerrar }) => {
   const navigate = useNavigate();

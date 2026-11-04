@@ -6,7 +6,7 @@ import { useAuth } from "./context/AuthContext";
 import ClienteLayout from "./layouts/ClienteLayout";
 
 // Mapa
-import MapaMercadoPagina from './pages/MapaMercadoPagina.jsx';
+import MapaMercadoPagina from './pages/cliente/MapaMercadoPagina.jsx';
 
 // Cliente
 import Home from "./pages/cliente/Home";

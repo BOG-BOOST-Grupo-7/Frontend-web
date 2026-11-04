@@ -329,19 +329,6 @@ function NavegacionPrincipal({
           </>
         ) : (
           <>
-            <Link to="/" onClick={cerrarMenus}>Inicio</Link>
-            <div className="catalogo-container">
-              <button
-                type="button"
-                className="catalogo-link"
-                aria-expanded={catalogoOpen}
-                aria-controls="categorias-dropdown-mobile"
-                onClick={() => setCatalogoOpen(!catalogoOpen)}
-              >
-                Categorías
-                <i className={`fas fa-chevron-down dropdown-arrow ${catalogoOpen ? "rotate" : ""}`}></i>
-              </button>
-
               <NavegacionPrincipal
                 rol={rol}
                 cerrarMenus={cerrarMenus}
@@ -351,9 +338,6 @@ function NavegacionPrincipal({
                 dropdownId="categorias-dropdown-mobile"
                 textoVacio="No hay categorías"
               />
-              
-            </div>
-            <Link to="/negocios" onClick={cerrarMenus}>Negocios</Link>
           </>
         )}
 

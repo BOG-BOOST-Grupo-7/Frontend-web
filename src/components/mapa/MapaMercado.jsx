@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { supabase } from '../supabase';
 import ModalInfoPuesto from '../components/mapa/ModalInfoPuesto';
-import './MapaMercado.css';
+import '../../styles/MapaMercado.css';
 
 const MapaMercado = () => {
   const [escala, setEscala] = useState(1);
