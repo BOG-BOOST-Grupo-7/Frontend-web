@@ -39,52 +39,55 @@ function ProductCard({ producto }) {
     };
 
     return (
-        <div
-            className="product-card"
-            onClick={abrirDetalle}
-        >
-            <div className="product-card-img-container">
-                {producto.imagen ? (
-                    <img
-                        src={producto.imagen}
-                        alt={producto.nombre_producto}
-                        className="producto-img"
-                    />
-                ) : (
-                    <div className="sin-imagen">
-                        Sin imagen
-                    </div>
-                )}
-            </div>
+        <div className="product-card">
+            <button
+                type="button"
+                className="product-card-detalle"
+                onClick={abrirDetalle}
+                aria-label={`Ver detalle de ${producto.nombre_producto}`}
+            >
+                <div className="product-card-img-container">
+                    {producto.imagen ? (
+                        <img
+                            src={producto.imagen}
+                            alt={producto.nombre_producto}
+                            className="producto-img"
+                        />
+                    ) : (
+                        <div className="sin-imagen">
+                            Sin imagen
+                        </div>
+                    )}
+                </div>
 
-            <div className="product-card-body">
+                <div className="product-card-body">
+                    <span className="product-card-category">
+                        {producto.categoria?.nombre_categoria}
+                    </span>
 
-                <span className="product-card-category">
-                    {producto.categoria?.nombre_categoria}
-                </span>
+                    <h4>{producto.nombre_producto}</h4>
 
-                <h4>{producto.nombre_producto}</h4>
+                    <p className="product-card-desc">
+                        {producto.descripcion}
+                    </p>
 
-                <p className="product-card-desc">
-                    {producto.descripcion}
-                </p>
+                    <span className="product-card-price">
+                        {Number(producto.precio).toLocaleString("es-CO", {
+                            style: "currency",
+                            currency: "COP"
+                        })}
+                    </span>
+                </div>
+            </button>
 
-                <span className="product-card-price">
-                    {Number(producto.precio).toLocaleString("es-CO", {
-                        style: "currency",
-                        currency: "COP"
-                    })}
-                </span>
-
-                <button
-                    className="btn-carrito"
-                    onClick={agregarAlCarrito}
-                >
-                    <FaShoppingCart />
-                    Agregar
-                </button>
-
-            </div>
+            <button
+                type="button"
+                className="btn-carrito"
+                onClick={agregarAlCarrito}
+            >
+                <FaShoppingCart />
+                Agregar
+            </button>
         </div>
     );
 }
