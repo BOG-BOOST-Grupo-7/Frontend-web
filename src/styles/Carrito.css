@@ -110,25 +110,44 @@
   text-align: right;
 }
 
+/* ================= BOTONES DEL CARRITO ================= */
+
 .botones {
   display: flex;
   justify-content: flex-end;
-  gap: 10px;
-  margin-top: 10px;
+  gap: 15px; /* Separación entre los botones */
+  margin-top: 20px;
 }
 
-.btn-vaciar {
-  background: gray;
-  color: white;
+/* Estilos compartidos para que midan y se vean igual */
+.btn-vaciar,
+.btn-comprar {
+  padding: 12px 24px;
   border: none;
-  padding: 10px;
+  border-radius: 8px; /* Mismos bordes redondeados */
+  font-size: 16px;
+  font-weight: bold;
   cursor: pointer;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
+/* Botón Vaciar Carrito (Rojo Sólido) */
+.btn-vaciar {
+  background: #e53935; /* Rojo sólido */
+}
+
+.btn-vaciar:hover {
+  background: #c62828; /* Rojo un poco más oscuro al pasar el mouse */
+}
+
+/* Botón Comprar (Verde original) */
 .btn-comprar {
   background: #21b15d;
-  color: white;
-  border: none;
-  padding: 10px;
-  cursor: pointer;
+}
+
+.btn-comprar:hover {
+  background: #1a8e4a; 
 }

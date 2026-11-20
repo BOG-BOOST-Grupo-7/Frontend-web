@@ -67,7 +67,9 @@
   font-size: 11px;
   color: #777;
   margin-bottom: 4px;
-  height: 15px;
+  height: auto; /* Quitamos la altura fija */
+  min-height: 28px; /* Reserva espacio para 2 líneas (14px x 2) para que todas las tarjetas midan igual */
+  line-height: 14px; /* Ajusta según tu diseño */
   overflow: hidden;
 }
 

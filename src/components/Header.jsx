@@ -345,7 +345,7 @@ function NavegacionPrincipal({
           <>
             <Link to="/registrar-negocio" onClick={cerrarMenus}>Registrar negocio</Link>
             <Link to="/login" onClick={cerrarMenus}>Iniciar Sesión</Link>
-            <Link to="/registro" onClick={cerrarMenus}>Registro</Link>
+            <Link to="/registro" onClick={cerrarMenus}>Registrarse</Link>
           </>
         ) : rol === "CLIENTE" ? (
           <>

@@ -572,3 +572,60 @@ html, body {
 
     z-index: 9999;
 }
+
+/* ================= BOTÓN CERRAR SESIÓN MÓVIL ================= */
+.mobile-menu .logout {
+    padding: 15px 25px;
+    border: none;
+    border-bottom: 1px solid #eee;
+    background: transparent;
+    color: #d9534f;
+    font-weight: 600;
+    font-size: 16px;
+    font-family: inherit;
+    text-align: left;
+    cursor: pointer;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    transition: background 0.2s ease-in-out;
+}
+
+/* Efecto hover igual al de los demás enlaces */
+.mobile-menu .logout:hover {
+    background: #fdf2f2;
+    color: #c9302c;
+}
+
+/* Quitar el borde de enfoque al hacer clic */
+.mobile-menu .logout:focus {
+    outline: none;
+}
+
+/* ================= BOTONES DE ACCESO MÓVIL ================= */
+
+/* 1. INICIAR SESIÓN */
+.mobile-menu a[href="/login"] {
+    color: #f2a92b; /* Naranja oscuro para buen contraste en móvil */
+    font-weight: 600;
+}
+
+.mobile-menu a[href="/login"]:hover {
+    background: #fff8e7; /* Fondo naranja muy suave (como el de tu dropdown) */
+    color: #d97706; /* Naranja más oscuro */
+}
+
+/* 2. REGISTRO */ 
+.mobile-menu a[href="/registro"] {
+    color: #2e7d32; 
+    font-weight: 600;
+}
+
+.mobile-menu a[href="/registro"]:hover {
+    background: #e8f5e9; /* Fondo verde suave */
+    color: #1b5e20;
+}
+
+.mobile-menu a[href="/"] {
+    font-weight: 600;
+}
