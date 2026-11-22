@@ -47,7 +47,7 @@ const MapaMercado = () => {
       }
     };
 
-    cargarTodo();
+    void cargarTodo();
   }, []);
 
   // Función para asociar el número de puesto con el negocio aprobado

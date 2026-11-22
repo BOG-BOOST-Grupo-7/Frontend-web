@@ -1,6 +1,13 @@
 .mip-fondo {
   position: fixed;
   inset: 0;
+  width: 100%;
+  height: 100%;
+  max-width: none;
+  max-height: none;
+  margin: 0;
+  padding: 0;
+  border: none;
   background: rgba(0, 0, 0, 0.55);
   display: flex;
   justify-content: center;
@@ -51,11 +58,14 @@
 /* Estilo vertical forzado */
 .mip-info-negocio {
   display: flex;
-  flex-direction: column; /* 👈 Fuerza la columna */
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   gap: 10px;
   width: 100%;
+  text-decoration: none;
+  color: inherit;
+  box-sizing: border-box;
 }
 
 /* Estilos para hacer el bloque del negocio clicable */
@@ -73,6 +83,12 @@
 .mip-info-negocio.mip-clicable:hover .mip-campo-info {
   border-color: #f39c12;
   background: #fff8ee;
+}
+
+.mip-info-negocio:focus-visible,
+.mip-boton-cerrar:focus-visible {
+  outline: 3px solid #f39c12;
+  outline-offset: 3px;
 }
 
 .mip-texto-ver-perfil {
