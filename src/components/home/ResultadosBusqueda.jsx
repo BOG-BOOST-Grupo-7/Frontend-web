@@ -64,7 +64,7 @@ const ResultadosBusqueda = () => {
       }
     };
 
-    fetchResultados();
+    void fetchResultados();
 
     return () => {
       cancelado = true;
@@ -91,10 +91,10 @@ const ResultadosBusqueda = () => {
       );
     }
 
-    const min = parseFloat(filtros.precioMin);
-    const max = parseFloat(filtros.precioMax);
-    if (!isNaN(min)) lista = lista.filter((p) => Number(p.precio) >= min);
-    if (!isNaN(max)) lista = lista.filter((p) => Number(p.precio) <= max);
+    const min = Number.parseFloat(filtros.precioMin);
+    const max = Number.parseFloat(filtros.precioMax);
+    if (!Number.isNaN(min)) lista = lista.filter((p) => Number(p.precio) >= min);
+    if (!Number.isNaN(max)) lista = lista.filter((p) => Number(p.precio) <= max);
 
     switch (filtros.orden) {
       case "precio-asc":
@@ -226,8 +226,9 @@ const ResultadosBusqueda = () => {
 
             {categoriasDisponibles.length > 0 && (
               <div className="filtro-grupo">
-                <label>Categoría</label>
+                <label htmlFor="categoria">Categoría</label>
                 <select
+                  id="categoria"
                   value={filtros.categoria}
                   onChange={(e) => {
                     const nuevos = { ...filtros, categoria: e.target.value };
@@ -244,17 +245,17 @@ const ResultadosBusqueda = () => {
             )}
 
             <div className="filtro-grupo">
-              <label>Rango de precio</label>
+              <label htmlFor="rango-precio">Rango de precio</label>
               <div className="filtro-precio">
-                <input type="number" placeholder="Mín" min="0" value={filtros.precioMin} onChange={(e) => setFiltros({ ...filtros, precioMin: e.target.value })} onBlur={() => aplicarFiltros(filtros)} />
+                <input type="number" id="rango-precio" placeholder="Mín" min="0" value={filtros.precioMin} onChange={(e) => setFiltros({ ...filtros, precioMin: e.target.value })} onBlur={() => aplicarFiltros(filtros)} />
                 <span>—</span>
-                <input type="number" placeholder="Máx" min="0" value={filtros.precioMax} onChange={(e) => setFiltros({ ...filtros, precioMax: e.target.value })} onBlur={() => aplicarFiltros(filtros)} />
+                <input type="number" id="rango-precio" placeholder="Máx" min="0" value={filtros.precioMax} onChange={(e) => setFiltros({ ...filtros, precioMax: e.target.value })} onBlur={() => aplicarFiltros(filtros)} />
               </div>
             </div>
 
             <div className="filtro-grupo">
-              <label>Ordenar por</label>
-              <select
+              <label htmlFor="orden">Ordenar por</label>
+              <select id="orden"
                 value={filtros.orden}
                 onChange={(e) => {
                   const nuevos = { ...filtros, orden: e.target.value };
