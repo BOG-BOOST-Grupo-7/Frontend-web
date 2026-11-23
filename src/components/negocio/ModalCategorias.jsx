@@ -25,7 +25,8 @@ export default function ModalCategorias({
 
     useEffect(() => {
         if (abierto) {
-            cargarCategorias();
+            void cargarCategorias();
+
             if (categoriaAEditar) {
                 setEditando(categoriaAEditar.id_categoria);
                 setFormulario({
@@ -33,6 +34,7 @@ export default function ModalCategorias({
                     id_categoria_padre: categoriaAEditar.id_categoria_padre || "",
                     estado: categoriaAEditar.estado || "ACTIVO" // 👈 Cargar estado
                 });
+
             } else {
                 limpiarFormulario();
             }
@@ -111,8 +113,15 @@ export default function ModalCategorias({
     if (!abierto) return null;
 
     return (
-        <div className="modal-overlay" onClick={onClose}>
-            <div className="modal-content" onClick={(e) => e.stopPropagation()}>
+        <dialog
+            open
+            className="modal-overlay"
+            aria-labelledby="titulo-modal-categorias"
+            onClick={(e) => {
+                if (e.target === e.currentTarget) onClose();
+            }}
+        >
+            <div className="modal-content">
                 <div className="modal-header">
                     <h2>
                         {editando ? "Actualizar Categoría" : "Administrar Categorías"}
@@ -130,9 +139,10 @@ export default function ModalCategorias({
                     )}
 
                     <div className="form-group">
-                        <label>Nombre</label>
+                        <label htmlFor="nombre-categoria">Nombre</label>
                         <input
                             type="text"
+                            id="nombre-categoria"
                             value={formulario.nombre_categoria}
                             onChange={(e) => {
                                 const valorSinNumeros = e.target.value.replace(/[0-9]/g, "");
@@ -147,8 +157,9 @@ export default function ModalCategorias({
                     </div>
 
                     <div className="form-group">
-                        <label>Categoría padre</label>
+                        <label htmlFor="categoria-padre">Categoría padre</label>
                         <select
+                            id="categoria-padre"
                             value={formulario.id_categoria_padre}
                             onChange={(e) =>
                                 setFormulario({
@@ -174,8 +185,9 @@ export default function ModalCategorias({
                     {/* 👇 Nuevo campo para activar/desactivar */}
                     {editando && (
                         <div className="form-group">
-                            <label>Estado</label>
+                            <label htmlFor="estado-categoria">Estado</label>
                             <select
+                                id="estado-categoria"
                                 value={formulario.estado}
                                 onChange={(e) =>
                                     setFormulario({
@@ -209,6 +221,6 @@ export default function ModalCategorias({
                     </button>
                 </div>
             </div>
-        </div>
+        </dialog>
     );
 }
