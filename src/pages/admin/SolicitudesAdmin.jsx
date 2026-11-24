@@ -35,7 +35,7 @@ function SolicitudesAdmin() {
     const filasPorPagina = 5; 
 
     useEffect(() => {
-        cargarSolicitudes();
+        void cargarSolicitudes();
     }, []);
 
     // Reiniciar a la página 1 cuando cambia el filtro o la búsqueda
@@ -62,7 +62,7 @@ function SolicitudesAdmin() {
             await aprobarSolicitud(id);
             alert("Negocio aprobado correctamente.");
             cerrarModal();
-            cargarSolicitudes();
+            void cargarSolicitudes();
         } catch (error) {
             console.error(error);
             alert("No fue posible aprobar la solicitud.");
@@ -79,7 +79,7 @@ function SolicitudesAdmin() {
             await rechazarSolicitud(id, observacion.trim());
             alert("Negocio rechazado correctamente.");
             cerrarModal();
-            cargarSolicitudes();
+            void cargarSolicitudes();
         } catch (error) {
             console.error(error);
             alert("No fue posible rechazar.");
@@ -181,8 +181,9 @@ function SolicitudesAdmin() {
                 </div>
 
                 <div className="filter-group">
-                    <label>Estado:</label>
+                    <label htmlFor="filtro-estado">Estado:</label>
                     <select
+                        id="filtro-estado"
                         className="usuarios-select"
                         value={estadoFiltro}
                         onChange={(e) => setEstadoFiltro(e.target.value)}
@@ -315,8 +316,17 @@ function SolicitudesAdmin() {
             MODAL DETALLES REDISEÑADO
             ============================ */}
             {solicitudSeleccionada && (
-                <div className="modal-overlay" onClick={cerrarModal}>
-                    <div className="modal-content negocio-modal" onClick={(e) => e.stopPropagation()}>
+                <dialog
+                    open
+                    className="modal-overlay"
+                    aria-labelledby="titulo-modal-negocio"
+                    onClick={(e) => {
+                        if (e.target === e.currentTarget) {
+                            cerrarModal();
+                        }
+                    }}
+                >
+                    <div className="modal-content negocio-modal">
                         
                         <div className="modal-header">
                             <div className="modal-logo">
@@ -327,7 +337,7 @@ function SolicitudesAdmin() {
                                 )}
                             </div>
                             <div className="modal-title-info">
-                                <h2>{solicitudSeleccionada.nombre_negocio}</h2>
+                                <h2 id="titulo-modal-negocio">{solicitudSeleccionada.nombre_negocio}</h2>
                                 <span className={estadoClass(solicitudSeleccionada.estado_negocio)}>
                                     {solicitudSeleccionada.estado_negocio}
                                 </span>
@@ -386,7 +396,7 @@ function SolicitudesAdmin() {
                             </button>
                         </div>
                     </div>
-                </div>
+                </dialog>
             )}
         </main>
     );
