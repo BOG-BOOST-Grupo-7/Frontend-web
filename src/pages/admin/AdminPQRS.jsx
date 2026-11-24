@@ -40,7 +40,7 @@ function AdminPQRS() {
   };
 
   useEffect(() => {
-    cargarPQRS();
+    void cargarPQRS();
   }, []);
 
   // Cambiar respuesta localmente
@@ -59,7 +59,7 @@ function AdminPQRS() {
     try {
       await responderPQRS(id, respuesta);
       alert("Respuesta enviada.");
-      cargarPQRS();
+      void cargarPQRS();
     } catch (error) {
       console.error(error);
       alert("No fue posible responder.");
@@ -143,9 +143,10 @@ function AdminPQRS() {
         </div>
 
         <div className="filter-group">
-          <label>Estado:</label>
+          <label htmlFor="filtro-estado">Estado:</label>
           <select
             className="usuarios-select"
+            id="filtro-estado"
             value={estadoFiltro}
             onChange={(e) => setEstadoFiltro(e.target.value)}
           >

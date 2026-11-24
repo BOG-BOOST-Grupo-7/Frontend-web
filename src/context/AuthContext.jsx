@@ -46,7 +46,7 @@ export function AuthProvider({ children }) {
       }
     };
 
-    restaurarSesion();
+    void restaurarSesion();
   }, []);
 
   const login = (userData, perfilData) => {
