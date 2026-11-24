@@ -31,7 +31,7 @@ export default function ModalMediosPago({
 
     useEffect(() => {
         if (abierto) {
-            cargarMedios();
+            void cargarMedios();
             limpiarFormulario();
         }
     }, [abierto]);
@@ -78,7 +78,7 @@ export default function ModalMediosPago({
             }
 
             limpiarFormulario();
-            cargarMedios();
+            void cargarMedios();
         } catch (error) {
             console.error(error);
             setError(error.response?.data?.mensaje || "Error al guardar el medio de pago.");
@@ -107,7 +107,7 @@ export default function ModalMediosPago({
         try {
             const respuesta = await eliminarMedioPago(id);
             alert(respuesta.mensaje);
-            cargarMedios();
+            void cargarMedios();
         } catch (error) {
             console.error("Error al eliminar:", error);
             alert(error.response?.data?.mensaje || "No se pudo procesar la solicitud.");
@@ -145,9 +145,10 @@ export default function ModalMediosPago({
                     )}
 
                     <div className="form-group">
-                        <label>Nombre del medio</label>
+                        <label htmlFor="nombre-medio">Nombre del medio</label>
                         <input
                             type="text"
+                            id="nombre-medio"
                             placeholder="Ej: Nequi"
                             value={formulario.nombre_medio}
                             onChange={(e) => {
@@ -162,11 +163,12 @@ export default function ModalMediosPago({
                     </div>
 
                     <div className="form-group">
-                        <label>Número</label>
+                        <label htmlFor="numero-medio">Número</label>
                         <input
                             type="text"
                             inputMode="numeric"
                             placeholder="Número (6 a 20 dígitos)"
+                            id="numero-medio"
                             value={formulario.numero_medio}
                             onChange={(e) => {
                                 const soloNumeros = e.target.value.replace(/\D/g, "");
@@ -180,9 +182,10 @@ export default function ModalMediosPago({
                     </div>
 
                     <div className="form-group">
-                        <label>Llave</label>
+                        <label htmlFor="llave-medio">Llave</label>
                         <input
                             type="text"
+                            id="llave-medio"
                             placeholder="Correo o celular (opcional)"
                             value={formulario.llave_medio}
                             onChange={(e) =>
