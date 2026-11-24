@@ -30,8 +30,8 @@ export default function ListaUsuariosAdmin() {
     const [mostrarModal, setMostrarModal] = useState(false);
 
     useEffect(() => {
-        cargarUsuarios();
-        cargarRoles();
+        void cargarUsuarios();
+        void cargarRoles();
     }, []);
 
     const cargarUsuarios = async () => {
@@ -114,7 +114,7 @@ export default function ListaUsuariosAdmin() {
             const nuevosRoles = { ...rolesSeleccionados };
             delete nuevosRoles[usuario.id_perfil];
             setRolesSeleccionados(nuevosRoles);
-            cargarUsuarios();
+            void cargarUsuarios();
         } catch (error) {
             console.error(error);
             alert(error.response?.data?.mensaje || "No fue posible actualizar el rol.");
@@ -154,18 +154,36 @@ export default function ListaUsuariosAdmin() {
                     <input type="text" className="usuarios-input" placeholder="Buscar por nombre o correo..." value={busqueda} onChange={(e) => setBusqueda(e.target.value)} />
                 </div>
                 <div className="filter-group">
-                    <label>Rol:</label>
-                    <select className="usuarios-select" value={rolFiltro} onChange={(e) => setRolFiltro(e.target.value)}>
+                    <label htmlFor="filtro-rol">Rol:</label>
+                    <select
+                        id="filtro-rol"
+                        className="usuarios-select"
+                        value={rolFiltro}
+                        onChange={(e) => setRolFiltro(e.target.value)}
+                    >
                         <option value="todos">Todos</option>
-                        {roles.map((rol) => <option key={rol.id_rol} value={rol.id_rol}>{rol.nombre_rol}</option>)}
+                        {roles.map((rol) => (
+                            <option key={rol.id_rol} value={rol.id_rol}>
+                                {rol.nombre_rol}
+                            </option>
+                        ))}
                     </select>
-                    <label>Estado:</label>
-                    <select className="usuarios-select" value={estadoFiltro} onChange={(e) => setEstadoFiltro(e.target.value)}>
+
+                    <label htmlFor="filtro-estado">Estado:</label>
+                    <select
+                        id="filtro-estado"
+                        className="usuarios-select"
+                        value={estadoFiltro}
+                        onChange={(e) => setEstadoFiltro(e.target.value)}
+                    >
                         <option value="todos">Todos</option>
                         <option value="ACTIVO">Activos</option>
                         <option value="INACTIVO">Inactivos</option>
                     </select>
-                    <button className="btn-orange" onClick={limpiarFiltros}><FaUndo /> Limpiar</button>
+
+                    <button className="btn-orange" onClick={limpiarFiltros}>
+                        <FaUndo /> Limpiar
+                    </button>
                 </div>
             </div>
 
@@ -234,11 +252,27 @@ export default function ListaUsuariosAdmin() {
 
             {/* ================= MODAL DETALLES ================= */}
             {mostrarModal && usuarioSeleccionado && (
-                <div className="modal-overlay" onClick={cerrarModal}>
-                    <div className="modal-content" onClick={(e) => e.stopPropagation()}>
+                <dialog
+                    open
+                    className="modal-overlay"
+                    aria-labelledby="titulo-detalles-usuario"
+                    onClick={(e) => {
+                        if (e.target === e.currentTarget) {
+                            cerrarModal();
+                        }
+                    }}
+                >
+                    <div className="modal-content">
                         <div className="modal-header">
-                            <h2>Detalles del Usuario</h2>
-                            <button className="modal-close" onClick={cerrarModal}>×</button>
+                            <h2 id="titulo-detalles-usuario">Detalles del Usuario</h2>
+                            <button
+                                type="button"
+                                className="modal-close"
+                                onClick={cerrarModal}
+                                aria-label="Cerrar detalles del usuario"
+                            >
+                                ×
+                            </button>
                         </div>
                         <div className="modal-body">
                             <div className="detalle-item">
@@ -275,7 +309,7 @@ export default function ListaUsuariosAdmin() {
                             </div>
                         </div>
                     </div>
-                </div>
+                </dialog>
             )}
         </div>
     );
