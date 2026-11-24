@@ -54,16 +54,19 @@ export default function ModalEditarNegocio({
     };
 
     return (
-        <div
+        <dialog
+            open
             className="modal-overlay"
-            onClick={onClose}
+            aria-labelledby="titulo-editar-negocio"
+            onClick={(e) => {
+                if (e.target === e.currentTarget) {
+                    onClose();
+                }
+            }}
         >
-            <div
-                className="modal-content"
-                onClick={(e) => e.stopPropagation()}
-            >
+            <div className="modal-content">
                 <div className="modal-header">
-                    <h2>
+                    <h2 id="titulo-editar-negocio">
                         Editar negocio
                     </h2>
                     <button
@@ -76,11 +79,12 @@ export default function ModalEditarNegocio({
 
                 <div className="modal-body">
                     <div className="form-group">
-                        <label>
+                        <label htmlFor="nombre-negocio">
                             Nombre
                         </label>
                         <input
                             type="text"
+                            id="nombre-negocio"
                             value={nombre}
                             onChange={(e) => {
                                 // Permitir solo letras, acentos, eñes y espacios
@@ -91,10 +95,11 @@ export default function ModalEditarNegocio({
                     </div>
 
                     <div className="form-group">
-                        <label>
+                        <label htmlFor="descripcion-negocio">
                             Descripción
                         </label>
                         <textarea
+                            id="descripcion-negocio"
                             rows={4}
                             value={descripcion}
                             onChange={(e) =>
@@ -106,11 +111,12 @@ export default function ModalEditarNegocio({
                     </div>
 
                     <div className="form-group">
-                        <label>
+                        <label htmlFor="telefono-negocio">
                             Teléfono
                         </label>
                         <input
                             type="text"
+                            id="telefono-negocio"
                             inputMode="numeric"
                             value={telefono}
                             onChange={(e) => {
@@ -142,6 +148,6 @@ export default function ModalEditarNegocio({
                     </button>
                 </div>
             </div>
-        </div>
+        </dialog>
     );
 }
