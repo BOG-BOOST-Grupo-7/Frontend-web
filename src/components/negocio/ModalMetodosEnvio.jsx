@@ -32,7 +32,7 @@ export default function ModalMetodosEnvio({
 
     useEffect(() => {
         if (abierto) {
-            cargarMetodos();
+            void cargarMetodos();
             limpiarFormulario();
         }
     }, [abierto]);
@@ -75,7 +75,7 @@ export default function ModalMetodosEnvio({
         if (
             formulario.costo_envio === "" ||
             formulario.costo_envio === null ||
-            isNaN(formulario.costo_envio) ||
+            Number.isNaN(formulario.costo_envio) ||
             Number(formulario.costo_envio) < 0
         ) {
             setError("El costo de envío debe ser un número mayor o igual a 0.");
@@ -93,7 +93,7 @@ export default function ModalMetodosEnvio({
             }
 
             limpiarFormulario();
-            cargarMetodos();
+            void cargarMetodos();
         } catch (error) {
             console.error(error);
             setError(error.response?.data?.mensaje || "Error al guardar el método de envío.");
@@ -123,7 +123,7 @@ export default function ModalMetodosEnvio({
         try {
             const respuesta = await eliminarMetodoEnvio(id);
             alert(respuesta.mensaje);
-            cargarMetodos();
+            void cargarMetodos();
         } catch (error) {
             console.error("Error al eliminar:", error);
             alert(error.response?.data?.mensaje || "No se pudo procesar la solicitud.");
@@ -162,10 +162,11 @@ export default function ModalMetodosEnvio({
                     )}
 
                     <div className="form-group">
-                        <label>Nombre</label>
+                        <label htmlFor="nombre-metodo">Nombre</label>
                         <input
                             type="text"
                             placeholder="Ej: Domicilio"
+                            id="nombre-metodo"
                             value={formulario.nombre_metodo}
                             onChange={(e) => {
                                 const soloLetras = e.target.value.replace(/[^a-zA-ZáéíóúÁÉÍÓÚñÑ\s]/g, "");
@@ -179,9 +180,10 @@ export default function ModalMetodosEnvio({
                     </div>
 
                     <div className="form-group">
-                        <label>Descripción</label>
+                        <label htmlFor="descripcion-metodo">Descripción</label>
                         <input
                             placeholder="Descripción (máx. 255 caracteres)"
+                            id="descripcion-metodo"
                             value={formulario.descripcion_metodo}
                             onChange={(e) =>
                                 setFormulario({
@@ -194,12 +196,13 @@ export default function ModalMetodosEnvio({
                     </div>
 
                     <div className="form-group">
-                        <label>Costo</label>
+                        <label htmlFor="costo-metodo">Costo</label>
                         <input
                             type="number"
                             min="0"
                             step="0.01"
                             placeholder="Ej: 15000"
+                            id="costo-metodo"
                             value={formulario.costo_envio}
                             onChange={(e) =>
                                 setFormulario({
