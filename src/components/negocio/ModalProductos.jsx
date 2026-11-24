@@ -24,7 +24,7 @@ export default function ModalProductos({ abierto, onClose, idNegocio, productoAE
 
     useEffect(() => {
         if (abierto) {
-            cargarCategorias();
+            void cargarCategorias();
             if (productoAEditar) {
                 setFormulario({
                     id_categoria: productoAEditar.id_categoria || "",
@@ -124,11 +124,23 @@ export default function ModalProductos({ abierto, onClose, idNegocio, productoAE
             setError("La descripción debe tener entre 10 y 1000 caracteres.");
             return;
         }
-        if (formulario.stock === "" || isNaN(formulario.stock) || Number(formulario.stock) < 0) {
+
+        const stock = Number(formulario.stock);
+        if (
+            formulario.stock === "" ||
+            !Number.isFinite(stock) ||
+            stock < 0
+        ) {
             setError("El stock debe ser un número mayor o igual a 0.");
             return;
         }
-        if (formulario.precio === "" || isNaN(formulario.precio) || Number(formulario.precio) < 0) {
+
+        const precio = Number(formulario.precio);
+        if (
+            formulario.precio === "" ||
+            !Number.isFinite(precio) ||
+            precio < 0
+        ) {
             setError("El precio debe ser un número mayor o igual a 0.");
             return;
         }
@@ -201,8 +213,8 @@ export default function ModalProductos({ abierto, onClose, idNegocio, productoAE
 
                     <div className="form-seccion">
                         <div className="form-group">
-                            <label>Imagen del producto</label>
-                            <label className="logo-upload">
+                            <span>Imagen del producto</span>
+                            <label htmlFor="imagen-producto" className="logo-upload">
                                 {previewImagen ? (
                                     <img src={previewImagen} alt="Producto" className="preview-logo" />
                                 ) : (
@@ -213,6 +225,7 @@ export default function ModalProductos({ abierto, onClose, idNegocio, productoAE
                                     </>
                                 )}
                                 <input
+                                    id="imagen-producto"
                                     type="file"
                                     hidden
                                     accept="image/png,image/jpeg,image/webp"
@@ -237,8 +250,9 @@ export default function ModalProductos({ abierto, onClose, idNegocio, productoAE
                         )}
 
                         <div className="form-group">
-                            <label>Categoría</label>
+                            <label htmlFor="categoría-producto">Categoría</label>
                             <select
+                                id="categoría-producto"
                                 value={formulario.id_categoria}
                                 onChange={(e) => setFormulario({ ...formulario, id_categoria: e.target.value })}
                             >
@@ -253,10 +267,11 @@ export default function ModalProductos({ abierto, onClose, idNegocio, productoAE
                         </div>
 
                         <div className="form-group">
-                            <label>Nombre</label>
+                            <label htmlFor="nombre-producto">Nombre</label>
                             <input
                                 type="text"
                                 placeholder="Nombre del producto"
+                                id="nombre-producto"
                                 value={formulario.nombre_producto}
                                 onChange={(e) => setFormulario({ ...formulario, nombre_producto: e.target.value })}
                                 maxLength={200}
@@ -264,9 +279,10 @@ export default function ModalProductos({ abierto, onClose, idNegocio, productoAE
                         </div>
 
                         <div className="form-group">
-                            <label>Descripción</label>
+                            <label htmlFor="descripcion-producto">Descripción</label>
                             <textarea
                                 rows="3"
+                                id="descripcion-producto"
                                 placeholder="Descripción detallada (mínimo 10 caracteres)..."
                                 value={formulario.descripcion}
                                 onChange={(e) => setFormulario({ ...formulario, descripcion: e.target.value })}
@@ -275,8 +291,9 @@ export default function ModalProductos({ abierto, onClose, idNegocio, productoAE
                         </div>
 
                         <div className="form-group">
-                            <label>Características</label>
+                            <label htmlFor="caracteristicas-producto">Características</label>
                             <textarea
+                                id="caracteristicas-producto"
                                 rows="3"
                                 placeholder="Características principales..."
                                 value={formulario.caracteristicas}
@@ -287,10 +304,11 @@ export default function ModalProductos({ abierto, onClose, idNegocio, productoAE
 
                         <div className="form-row" style={{ display: "flex", gap: "1rem" }}>
                             <div className="form-group" style={{ flex: 1 }}>
-                                <label>Stock</label>
+                                <label htmlFor="stock-producto">Stock</label>
                                 <input
                                     type="number"
                                     min="0"
+                                    id="stock-producto"
                                     value={formulario.stock}
                                     onChange={(e) => setFormulario({
                                         ...formulario,
@@ -300,11 +318,12 @@ export default function ModalProductos({ abierto, onClose, idNegocio, productoAE
                             </div>
 
                             <div className="form-group" style={{ flex: 1 }}>
-                                <label>Precio</label>
+                                <label htmlFor="precio-producto">Precio</label>
                                 <input
                                     type="number"
                                     min="0"
                                     step="0.01"
+                                    id="precio-producto"
                                     value={formulario.precio}
                                     onChange={(e) => setFormulario({
                                         ...formulario,
@@ -317,8 +336,9 @@ export default function ModalProductos({ abierto, onClose, idNegocio, productoAE
                         {/* campo para activar/desactivar */}
                         {productoAEditar && (
                             <div className="form-group">
-                                <label>Estado del producto</label>
+                                <label htmlFor="estado-producto">Estado del producto</label>
                                 <select
+                                    id="estado-producto"
                                     value={formulario.estado_producto}
                                     onChange={(e) => setFormulario({ ...formulario, estado_producto: e.target.value })}
                                 >
