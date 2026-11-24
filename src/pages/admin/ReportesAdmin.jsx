@@ -41,7 +41,8 @@ export default function ReportesAdmin() {
         setCargando(false);
       }
     };
-    fetchReportes();
+
+    void fetchReportes();
   }, []);
 
   // ==========================================
@@ -111,11 +112,17 @@ export default function ReportesAdmin() {
           
           {/* Filtro */}
           <div className="filtros-reportes">
-            <label>Filtrar por Año:</label>
-            <select value={filtroAnio} onChange={(e) => setFiltroAnio(e.target.value)}>
-              <option value="todos">Todos los años</option>
-              {aniosDisponibles.map(anio => <option key={anio} value={anio}>{anio}</option>)}
-            </select>
+              <label htmlFor="filtro-anio">Filtrar por Año:</label>
+              <select
+                  id="filtro-anio"
+                  value={filtroAnio}
+                  onChange={(e) => setFiltroAnio(e.target.value)}
+              >
+                  <option value="todos">Todos los años</option>
+                  {aniosDisponibles.map(anio => (
+                      <option key={anio} value={anio}>{anio}</option>
+                  ))}
+              </select>
           </div>
 
           <div className="reportes-grid">
@@ -192,11 +199,17 @@ export default function ReportesAdmin() {
           
           {/* Filtro */}
           <div className="filtros-reportes">
-            <label>Filtrar por Mes:</label>
-            <select value={filtroMesSemanal} onChange={(e) => setFiltroMesSemanal(e.target.value)}>
-              <option value="todos">Todos los meses</option>
-              {mesesDisponibles.map(mes => <option key={mes} value={mes}>{mes}</option>)}
-            </select>
+              <label htmlFor="filtro-mes">Filtrar por Mes:</label>
+              <select
+                  id="filtro-mes"
+                  value={filtroMesSemanal}
+                  onChange={(e) => setFiltroMesSemanal(e.target.value)}
+              >
+                  <option value="todos">Todos los meses</option>
+                  {mesesDisponibles.map(mes => (
+                      <option key={mes} value={mes}>{mes}</option>
+                  ))}
+              </select>
           </div>
 
           <div className="reportes-grid">
