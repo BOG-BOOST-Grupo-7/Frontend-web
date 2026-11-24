@@ -38,7 +38,7 @@ function ListaNegociosAdmin() {
     const elementosPorPaginaCategorias = 5;
 
     useEffect(() => {
-        cargarDatosIniciales();
+        void cargarDatosIniciales();
     }, []);
 
     const cargarDatosIniciales = async () => {
@@ -445,10 +445,19 @@ function ListaNegociosAdmin() {
             )}
 
             {mostrarModal && negocioSeleccionado && (
-                <div className="modal-overlay" onClick={cerrarModal}>
-                    <div className="modal-content" onClick={(e) => e.stopPropagation()}>
+                <dialog
+                    open
+                    className="modal-overlay"
+                    aria-labelledby="titulo-detalles-negocio"
+                    onClick={(e) => {
+                        if (e.target === e.currentTarget) {
+                            cerrarModal();
+                        }
+                    }}
+                >
+                    <div className="modal-content">
                         <div className="modal-header">
-                            <h2>Detalles del Negocio</h2>
+                            <h2 id="titulo-detalles-negocio">Detalles del Negocio</h2>
                             <button className="modal-close" onClick={cerrarModal}>×</button>
                         </div>
                         <div className="modal-body">
@@ -491,7 +500,7 @@ function ListaNegociosAdmin() {
                             <button className="btn-orange" onClick={cerrarModal}>Cerrar</button>
                         </div>
                     </div>
-                </div>
+                </dialog>
             )}
 
             <ModalCategorias
@@ -500,7 +509,7 @@ function ListaNegociosAdmin() {
                 onClose={() => {
                     setMostrarModalCategorias(false);
                     setCategoriaAEditar(null);
-                    recargarCategorias();
+                    void recargarCategorias();
                 }}
             />
         </div>
