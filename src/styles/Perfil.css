@@ -65,10 +65,18 @@
     background: #f8fafc;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.06);
     transition: transform 0.2s ease;
+    padding: 0;
+    color: inherit;
+    font: inherit;
 }
 
 .avatar-container:hover {
     transform: scale(1.02);
+}
+
+.avatar-container:focus-visible {
+    outline: 2px solid #f5b952;
+    outline-offset: 4px;
 }
 
 .avatar-image,
@@ -145,7 +153,9 @@
     gap: 4px;
 }
 
-.info-field label {
+/* Estilos de los demás campos */
+.info-field label,
+.info-field .info-label {
     font-weight: 600;
     font-size: 12px;
     color: #475569;
@@ -156,7 +166,9 @@
     letter-spacing: 0.5px;
 }
 
-.info-field label i {
+/* Estilos de los iconos */
+.info-field label i,
+.info-field .info-label i {
     color: #f5b952;
     font-size: 13px;
     width: 14px;

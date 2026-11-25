@@ -29,7 +29,7 @@ function Perfil() {
     const [editando, setEditando] = useState({});
 
     useEffect(() => {
-        cargarPerfil();
+        void cargarPerfil();
     }, []);
 
     const cargarPerfil = async () => {
@@ -162,14 +162,14 @@ function Perfil() {
         } catch (error) {
             console.error("Error al subir la imagen:", error);
             alert("Hubo un error al subir la foto. Intenta de nuevo.");
-            cargarPerfil(); // Restaurar la foto anterior en caso de fallo
+            void cargarPerfil(); // Restaurar la foto anterior en caso de fallo
         }
     };
 
     const handleDrop = (e) => {
         e.preventDefault();
         const file = e.dataTransfer.files[0];
-        handleImagen(file);
+        void handleImagen(file);
     };
 
     const renderCampo = (label, campo, icono) => (
@@ -239,11 +239,13 @@ function Perfil() {
 
             <div className="perfil-card">
                 <div className="avatar-section">
-                    <div
+                    <button
+                        type="button"
                         className="avatar-container"
                         onDrop={handleDrop}
                         onDragOver={(e) => e.preventDefault()}
                         onClick={() => fileInputRef.current?.click()}
+                        aria-label="Seleccionar foto de perfil"
                     >
                         {perfil.foto_perfil ? (
                             <img
@@ -269,11 +271,11 @@ function Perfil() {
                             hidden
                             onChange={(e) => {
                                 const archivo = e.target.files?.[0];
-                                handleImagen(archivo);
+                                void handleImagen(archivo);
                                 e.target.value = null;
                             }}
                         />
-                    </div>
+                    </button>
 
                     <p className="avatar-texto">
                         Haz clic o arrastra una imagen
@@ -290,14 +292,16 @@ function Perfil() {
 
                     <div className="perfil-field-wrapper">
                         <div className="info-field">
-                            <label>
+                            <div className="info-label">
                                 <i className="fas fa-envelope"></i>
                                 Correo Electrónico
-                            </label>
+                            </div>
+
                             <div className="field-value readonly-field">
                                 <span className="field-text">{perfil.email}</span>
                             </div>
                         </div>
+
                         <hr className="field-divider" />
                     </div>
 
