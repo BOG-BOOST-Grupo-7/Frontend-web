@@ -57,7 +57,7 @@ export default function PerfilNegocio() {
     };
 
     useEffect(() => {
-        cargarNegocio();
+        void cargarNegocio();
     }, []);
 
     const cargarNegocio = async () => {
