@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { obtenerNegociosPublicos } from "../../api/negocioApi";
 import toast from "react-hot-toast";
 import "../../styles/Negocios.css";
@@ -38,10 +38,10 @@ function Negocios() {
 
             <div className="negocios-grid">
                 {negociosPaginados.map((negocio) => (
-                    <div
+                    <Link
                         key={negocio.id_negocio}
+                        to={`/negocios/${negocio.id_negocio}`}
                         className="negocio-card"
-                        onClick={() => navigate(`/negocios/${negocio.id_negocio}`)}
                     >
                         <img
                             src={negocio.logo || "https://via.placeholder.com/120?text=Sin+Logo"}
@@ -54,7 +54,7 @@ function Negocios() {
                                 ? `${negocio.descripcion_negocio.substring(0, 80)}...`
                                 : negocio.descripcion_negocio}
                         </p>
-                    </div>
+                    </Link>
                 ))}
             </div>
 

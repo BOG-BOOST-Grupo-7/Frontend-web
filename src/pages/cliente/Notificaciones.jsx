@@ -20,7 +20,7 @@ function Notificaciones() {
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        cargarNotificaciones();
+        void cargarNotificaciones();
     }, []);
 
     const cargarNotificaciones = async () => {
@@ -159,34 +159,42 @@ function Notificaciones() {
                         <div
                             key={n.id_notificacion}
                             className={`notificacion-item ${!n.estado_notificacion ? "no-leida" : ""}`}
-                            onClick={() => {
-                                if (!n.estado_notificacion) {
-                                    marcarLeida(n.id_notificacion);
-                                }
-                            }}
                         >
-                            <div className={`notificacion-icon ${obtenerClase(n.tipo)}`}>
-                                {obtenerIcono(n.tipo)}
-                            </div>
+                            <button
+                                type="button"
+                                className="notificacion-contenido"
+                                onClick={() => {
+                                    if (!n.estado_notificacion) {
+                                        void marcarLeida(n.id_notificacion);
+                                    }
+                                }}
+                                disabled={n.estado_notificacion}
+                                aria-label={`Notificación: ${n.mensaje}. ${
+                                    n.estado_notificacion ? "Leída" : "Marcar como leída"
+                                }`}
+                            >
+                                <div className={`notificacion-icon ${obtenerClase(n.tipo)}`}>
+                                    {obtenerIcono(n.tipo)}
+                                </div>
 
-                            <div className="notificacion-content">
-                                <p className="mensaje">
-                                    <strong>BOG BOOST</strong>
-                                    <br />
-                                    {n.mensaje}
-                                </p>
-                                <span className="fecha">
-                                    {formatearFecha(n.fecha_notificacion)}
-                                </span>
-                            </div>
+                                <div className="notificacion-content">
+                                    <p className="mensaje">
+                                        <strong>BOG BOOST</strong>
+                                        <br />
+                                        {n.mensaje}
+                                    </p>
+                                    <span className="fecha">
+                                        {formatearFecha(n.fecha_notificacion)}
+                                    </span>
+                                </div>
+                            </button>
 
                             <button
+                                type="button"
                                 className="btn-eliminar"
-                                onClick={(e) => {
-                                    e.stopPropagation();
-                                    eliminar(n.id_notificacion);
-                                }}
+                                onClick={() => void eliminar(n.id_notificacion)}
                                 title="Eliminar"
+                                aria-label="Eliminar notificación"
                             >
                                 <FaTimes />
                             </button>
