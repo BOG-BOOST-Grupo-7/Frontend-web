@@ -58,7 +58,7 @@ function RegistrarNegocio() {
             }
         };
 
-        verificarPerfil();
+        void verificarPerfil();
     }, [navigate]);
 
     const loadAvailableStands = async () => {
@@ -75,7 +75,7 @@ function RegistrarNegocio() {
     };
 
     useEffect(() => {
-        loadAvailableStands();
+        void loadAvailableStands();
     }, []);
 
     // Cerrar dropdown al hacer clic afuera
@@ -262,9 +262,13 @@ function RegistrarNegocio() {
                     
                     {/* LOGO */}
                     <div className="form-group" style={{ alignItems: "center" }}>
-                        <label style={{ width: "100%", justifyContent: "flex-start" }}>
-                            <i className="fas fa-image label-icon"></i> Logo del negocio
-                        </label>
+                        <div
+                            className="logo-section-label"
+                            style={{ width: "100%", justifyContent: "flex-start" }}
+                        >
+                            <i className="fas fa-image label-icon"></i>
+                            Logo del negocio
+                        </div>
                         
                         <label className="logo-upload">
                             {previewLogo ? (
@@ -290,10 +294,11 @@ function RegistrarNegocio() {
 
                     {/* NOMBRE */}
                     <div className="form-group">
-                        <label>
+                        <label htmlFor="nombre_negocio">
                             <i className="fas fa-store label-icon"></i> Nombre del negocio
                         </label>
                         <input
+                            id="nombre_negocio"
                             type="text"
                             name="nombre_negocio"
                             value={datos.nombre_negocio}
@@ -309,10 +314,11 @@ function RegistrarNegocio() {
 
                     {/* DESCRIPCIÓN */}
                     <div className="form-group">
-                        <label>
+                        <label htmlFor="descripcion_negocio">
                             <i className="fas fa-align-left label-icon"></i> Descripción
                         </label>
                         <textarea
+                            id="descripcion_negocio"
                             name="descripcion_negocio"
                             value={datos.descripcion_negocio}
                             onChange={handleChange}
@@ -324,10 +330,11 @@ function RegistrarNegocio() {
 
                     {/* TELÉFONO */}
                     <div className="form-group">
-                        <label>
+                        <label htmlFor="telefono_negocio">
                             <i className="fas fa-phone label-icon"></i> Teléfono
                         </label>
                         <input
+                            id="telefono_negocio"
                             type="text"
                             name="telefono_negocio"
                             inputMode="numeric"
@@ -345,21 +352,26 @@ function RegistrarNegocio() {
 
                     {/* SELECTOR CON BUSCADOR INTEGRADO */}
                     <div className="form-group">
-                        <label>
+                        <label htmlFor="numero_puesto">
                             <i className="fas fa-map-marker-alt label-icon"></i> Número del puesto
                         </label>
 
                         <div className="custom-select-wrapper" ref={dropdownRef}>
                             {/* Caja que se ve igual que un select normal */}
-                            <div 
+                            <button
+                                type="button"
+                                id="numero-puesto"
                                 className={`custom-select-trigger ${dropdownAbierto ? "open" : ""}`}
                                 onClick={() => setDropdownAbierto(!dropdownAbierto)}
+                                aria-haspopup="listbox"
+                                aria-expanded={dropdownAbierto}
                             >
                                 <span className={textoMostrado ? "texto-seleccionado" : "texto-placeholder"}>
-                                    {textoMostrado || "-- Selecciona un puesto disponible --"}
+                                    {textoMostrado || "Selecciona un puesto disponible"}
                                 </span>
+
                                 <i className={`fas fa-chevron-${dropdownAbierto ? "up" : "down"} custom-select-arrow`}></i>
-                            </div>
+                            </button>
 
                             {/* Panel desplegable con el buscador dentro */}
                             {dropdownAbierto && (
@@ -370,11 +382,11 @@ function RegistrarNegocio() {
                                         <i className="fas fa-search"></i>
                                         <input
                                             type="text"
+                                            aria-label="Buscar puesto por número"
                                             placeholder="Buscar por número de puesto..."
                                             value={busquedaPuesto}
                                             onChange={(e) => setBusquedaPuesto(e.target.value.replace(/\D/g, ""))}
                                             inputMode="numeric"
-                                            autoFocus
                                         />
                                         {busquedaPuesto && (
                                             <button 
@@ -397,14 +409,21 @@ function RegistrarNegocio() {
                                             </div>
                                         ) : (
                                             puestosFiltrados.map((stand) => (
-                                                <div
+                                                <button
+                                                    type="button"
                                                     key={stand.id}
-                                                    className={`custom-select-option ${Number(datos.numero_puesto) === Number(stand.number) ? "selected" : ""}`}
+                                                    className={`custom-select-option ${
+                                                        Number(datos.numero_puesto) === Number(stand.number) ? "selected" : ""
+                                                    }`}
                                                     onClick={() => {
-                                                        setDatos((prev) => ({ ...prev, numero_puesto: stand.number }));
+                                                        setDatos((prev) => ({
+                                                            ...prev,
+                                                            numero_puesto: stand.number
+                                                        }));
                                                         setDropdownAbierto(false);
                                                         setBusquedaPuesto("");
                                                     }}
+                                                    aria-pressed={Number(datos.numero_puesto) === Number(stand.number)}
                                                 >
                                                     <div>
                                                         <strong>Puesto #{stand.number}</strong>
@@ -412,7 +431,7 @@ function RegistrarNegocio() {
                                                             <span className="option-section"> - {stand.section}</span>
                                                         )}
                                                     </div>
-                                                </div>
+                                                </button>
                                             ))
                                         )}
                                     </div>
