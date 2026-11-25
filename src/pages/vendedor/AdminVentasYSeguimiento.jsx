@@ -39,7 +39,7 @@ const AdminVentasYSeguimiento = () => {
   const filasPorPagina = 5;
 
   useEffect(() => {
-    cargarVentasConSeguimiento();
+    void cargarVentasConSeguimiento();
   }, []);
 
   // Reiniciar a la página 1 cuando cambia el filtro
@@ -304,30 +304,46 @@ const AdminVentasYSeguimiento = () => {
 
       {/* Modal de Información del Cliente */}
       {modalClienteAbierto && clienteSeleccionado && (
-        <div className="modal-overlay" onClick={cerrarModalCliente}>
-          <div 
-            className="modal-content negocio-modal" 
-            onClick={(e) => e.stopPropagation()}
-          >
-            {/* Cabecera del Modal */}
-            <div className="modal-cliente-header">
-              <div className="modal-cliente-titulo-group">
+        <div className="modal-overlay">
+
+    <button
+        type="button"
+        className="modal-backdrop"
+        onClick={cerrarModalCliente}
+        aria-label="Cerrar modal de información del cliente"
+    />
+
+    <div
+        className="modal-content negocio-modal"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="titulo-modal-cliente"
+    >
+        {/* Cabecera del Modal */}
+          <div className="modal-cliente-header">
+            <div className="modal-cliente-titulo-group">
                 <div className="modal-cliente-avatar">
                   <FaUser />
                 </div>
+
                 <div>
-                  <h3>Información del Cliente</h3>
-                  <small>Detalles de contacto y entrega</small>
+                    <h3 id="titulo-modal-cliente">
+                      Información del Cliente
+                    </h3>
+                    <small>Detalles de contacto y entrega</small>
                 </div>
-              </div>
-              <button 
-                onClick={cerrarModalCliente}
-                className="modal-close-btn"
-                title="Cerrar"
-              >
-                <FaTimes />
-              </button>
             </div>
+
+            <button
+              type="button"
+              onClick={cerrarModalCliente}
+              className="modal-close-btn"
+              title="Cerrar"
+              aria-label="Cerrar modal"
+            >
+              <FaTimes />
+            </button>
+          </div>
 
             {/* Contenido / Tarjetas de información */}
             <div className="modal-cliente-body">
