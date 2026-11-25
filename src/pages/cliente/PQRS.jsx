@@ -28,7 +28,7 @@ function PQRS() {
   };
 
   useEffect(() => {
-    cargarPQRS();
+    void cargarPQRS();
   }, []);
 
   const enviarPQRS = async (e) => {
@@ -48,7 +48,7 @@ function PQRS() {
 
       setMensaje("");
 
-      cargarPQRS();
+      void cargarPQRS();
 
     } catch (error) {
 
