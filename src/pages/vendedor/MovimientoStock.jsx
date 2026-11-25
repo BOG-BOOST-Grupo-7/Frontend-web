@@ -66,7 +66,7 @@ function AdminMovimientoStock() {
         setIdNegocio(10);
       }
     };
-    inicializar();
+    void inicializar();
   }, []);
 
   // ==========================
@@ -103,8 +103,8 @@ function AdminMovimientoStock() {
 
   useEffect(() => {
     if (id_negocio) {
-      cargarMovimientos();
-      cargarProductosTabla();
+      void cargarMovimientos();
+      void cargarProductosTabla();
     }
   }, [id_negocio]);
 
@@ -205,8 +205,8 @@ function AdminMovimientoStock() {
     try {
       const respuesta = await eliminarProducto(id_producto);
       alert(respuesta.mensaje);
-      cargarProductosTabla();
-      cargarMovimientos();
+      void cargarProductosTabla();
+      void cargarMovimientos();
     } catch (error) {
       console.error("Error al eliminar producto:", error);
       alert(error.response?.data?.mensaje || "No se pudo procesar la solicitud.");
@@ -279,8 +279,9 @@ function AdminMovimientoStock() {
             {vistaActiva === "movimientos" && (
               <>
                 <FaFilter />
-                <label>Tipo:</label>
+                <label htmlFor="tipo-filtro">Tipo:</label>
                 <select
+                  id="tipo-filtro"
                   className="filter-select usuarios-select"
                   value={tipoFiltro}
                   onChange={(e) => setTipoFiltro(e.target.value)}
@@ -445,8 +446,8 @@ function AdminMovimientoStock() {
         onClose={() => {
           setModalProductosAbierto(false);
           setProductoAEditar(null);
-          cargarProductosTabla();
-          cargarMovimientos();
+          void cargarProductosTabla();
+          void cargarMovimientos();
         }}
         idNegocio={id_negocio}
       />
