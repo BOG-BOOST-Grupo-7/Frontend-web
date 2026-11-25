@@ -44,7 +44,7 @@ function Registro() {
       return;
     }
 
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)+$/;
     if (!emailRegex.test(email)) {
       setError("Ingrese un correo electrónico válido");
       return;
@@ -96,10 +96,11 @@ function Registro() {
 
         <form onSubmit={handleSubmit} className="registro-form">
           <div className="form-group">
-            <label>
+            <label htmlFor="registro-nombre">
               <i className="fas fa-user label-icon"></i> Primer nombre
             </label>
             <input
+              id="registro-nombre"
               type="text"
               placeholder="Ej. Carlos"
               value={nombre}
@@ -115,10 +116,11 @@ function Registro() {
           </div>
 
           <div className="form-group">
-            <label>
+            <label htmlFor="registro-email">
               <i className="fas fa-envelope label-icon"></i> Correo electrónico
             </label>
             <input
+              id="registro-email"
               type="email"
               placeholder="tucorreo@ejemplo.com"
               value={email}
@@ -128,11 +130,12 @@ function Registro() {
           </div>
 
           <div className="form-group">
-            <label>
+            <label htmlFor="registro-password">
               <i className="fas fa-lock label-icon"></i> Contraseña
             </label>
             <div className="password-wrapper">
               <input
+                id="registro-password"
                 type={showPassword ? "text" : "password"}
                 placeholder="••••••••"
                 value={password}
@@ -143,6 +146,7 @@ function Registro() {
                 type="button"
                 className="toggle-password"
                 onClick={() => setShowPassword(!showPassword)}
+                aria-label={showPassword ? "Ocultar contraseña" : "Mostrar contraseña"}
               >
                 <i className={showPassword ? "fas fa-eye-slash" : "fas fa-eye"} />
               </button>
@@ -169,11 +173,12 @@ function Registro() {
           </div>
 
           <div className="form-group">
-            <label>
+            <label htmlFor="registro-confirmar-password">
               <i className="fas fa-check-double label-icon"></i> Confirmar contraseña
             </label>
             <div className="password-wrapper">
               <input
+                id="registro-confirmar-password"
                 type={showConfirmPassword ? "text" : "password"}
                 placeholder="••••••••"
                 value={confirmPassword}
@@ -184,6 +189,7 @@ function Registro() {
                 type="button"
                 className="toggle-password"
                 onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+                aria-label={showConfirmPassword ? "Ocultar contraseña" : "Mostrar contraseña"}
               >
                 <i className={showConfirmPassword ? "fas fa-eye-slash" : "fas fa-eye"} />
               </button>

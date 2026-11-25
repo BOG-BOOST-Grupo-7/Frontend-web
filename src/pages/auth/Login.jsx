@@ -68,10 +68,11 @@ function Login() {
 
         <form onSubmit={handleSubmit} className="registro-form">
           <div className="form-group">
-            <label>
+            <label htmlFor="registro-email">
               <i className="fas fa-envelope label-icon"></i> Correo electrónico
             </label>
             <input
+              id="registro-email"
               type="email"
               placeholder="tucorreo@ejemplo.com"
               value={email}
@@ -81,11 +82,12 @@ function Login() {
           </div>
 
           <div className="form-group">
-            <label>
+            <label htmlFor="registro-password">
               <i className="fas fa-key label-icon"></i> Contraseña
             </label>
             <div className="password-wrapper">
               <input
+                id="registro-password"
                 type={showPassword ? "text" : "password"}
                 placeholder="••••••••"
                 value={password}
@@ -96,6 +98,7 @@ function Login() {
                 type="button"
                 className="toggle-password"
                 onClick={() => setShowPassword(!showPassword)}
+                aria-label={showPassword ? "Ocultar contraseña" : "Mostrar contraseña"}
               >
                 <i className={showPassword ? "fas fa-eye-slash" : "fas fa-eye"} />
               </button>
