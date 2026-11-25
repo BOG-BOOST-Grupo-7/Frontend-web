@@ -14,7 +14,7 @@ const ComentariosProducto = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    cargarDatos();
+    void cargarDatos();
   }, [idProducto]);
 
   const cargarDatos = async () => {

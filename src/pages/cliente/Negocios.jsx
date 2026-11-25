@@ -13,7 +13,7 @@ function Negocios() {
     const negociosPorPagina = 12; 
 
     useEffect(() => {
-        cargarNegocios();
+        void cargarNegocios();
     }, []);
 
     const cargarNegocios = async () => {

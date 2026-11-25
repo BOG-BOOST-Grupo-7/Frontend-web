@@ -25,7 +25,7 @@ function Categoria() {
     };
 
     if (id) {
-      cargarProductos();
+      void cargarProductos();
     }
   }, [id]);
 

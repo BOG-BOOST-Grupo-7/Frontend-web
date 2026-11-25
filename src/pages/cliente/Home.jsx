@@ -16,7 +16,7 @@ function Home() {
   const productosPorPagina = 12; 
 
   useEffect(() => {
-    cargarDatos();
+    void cargarDatos();
   }, []);
 
   // Si cambia el filtro, reiniciamos la página a 1

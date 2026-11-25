@@ -11,7 +11,7 @@ const Historial = () => {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    cargarHistorial();
+    void cargarHistorial();
   }, []);
 
   const cargarHistorial = async () => {

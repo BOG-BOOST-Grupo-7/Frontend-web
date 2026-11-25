@@ -17,7 +17,7 @@ function NegocioDetalle() {
     const productosPorPagina = 12; 
 
     useEffect(() => {
-        cargarDatosNegocio();
+        void cargarDatosNegocio();
     }, [id]);
 
     const cargarDatosNegocio = async () => {
